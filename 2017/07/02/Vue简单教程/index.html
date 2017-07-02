@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://qiminghaonan.com/2017/07/02/Vue简单教程/index.html">
 <meta property="og:site_name" content="um-brella的博客">
 <meta property="og:description" content="数据绑定 Vue中显示数据，例如 在Vue1.0中，识别html需要多加一个{} 在Vue2.0中，识别html需要多加一个指令v-html，例如&amp;lt;div  v-html=&amp;quot;htmlStr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  123456789&amp;lt;body&amp;gt;	&amp;lt;div id=&quot;box&quot;&amp;gt;    	&amp;#123;&amp;#123;message&amp;#125;&amp;#">
-<meta property="og:updated_time" content="2017-07-02T10:22:51.000Z">
+<meta property="og:updated_time" content="2017-07-02T10:24:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue简单教程">
 <meta name="twitter:description" content="数据绑定 Vue中显示数据，例如 在Vue1.0中，识别html需要多加一个{} 在Vue2.0中，识别html需要多加一个指令v-html，例如&amp;lt;div  v-html=&amp;quot;htmlStr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  123456789&amp;lt;body&amp;gt;	&amp;lt;div id=&quot;box&quot;&amp;gt;    	&amp;#123;&amp;#123;message&amp;#125;&amp;#">
@@ -176,7 +176,7 @@
 <p>##双向数据绑定</p>
 <ul>
 <li><code>v-model</code> 双向绑定数据</li>
-<li>在<code>Vue1.0</code>中，只让数据绑定一次</li>
+<li>在<code>Vue1.0</code>中，<code>在两个大括号内加*号</code>只让数据绑定一次</li>
 <li>在<code>Vue2.0</code>中，<code>v-once</code>只让数据绑定一次</li>
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--给input添加一个指令，v-model=""，双向绑定数据--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"msg"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--&#123;&#123;*&#125;&#125;只让数据绑定一次，以后不再随着数据的改变而改变，在1.0中使用--&gt;</span></div><div class="line">    <span class="comment">&lt;!--&lt;p&gt;&#123;&#123;*msg&#125;&#125;&lt;/p&gt;--&gt;</span></div><div class="line">    <span class="comment">&lt;!--在2.0中加一个指令v-once，跟1.0*效果一样--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-once</span>=<span class="string">"msg"</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
