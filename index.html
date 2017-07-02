@@ -168,8 +168,6 @@
 <li>在<code>Vue1.0</code>中，识别<code>html</code>需要多加一个<code>{}</code></li>
 <li>在<code>Vue2.0</code>中，识别<code>html</code>需要多加一个指令<code>v-html</code>，例如<code>&lt;div  v-html=&quot;htmlStr&quot;&gt;&lt;/div&gt;</code></li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box"</span>&gt;</span></div><div class="line">    	&#123;&#123;message&#125;&#125;,&#123;&#123;msg1&#125;&#125;,</div><div class="line">    	<span class="comment">&lt;!--Vue1.0中，如果想实现字符串中html的识别，在里面多加一个&#123;&#125;--&gt;</span></div><div class="line">    	<span class="comment">&lt;!--&#123;&#123;&#123;htmlStr&#125;&#125;&#125;--&gt;</span></div><div class="line">    	<span class="comment">&lt;!--在Vue2.0中给当前视图加一个指令 v-html --&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">div</span>  <span class="attr">v-html</span>=<span class="string">"htmlStr"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"js/vue1.0.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">    <span class="comment">//通过构造函数的方式得到vue实例</span></div><div class="line">    <span class="comment">//el：规定当前的这个vue实例管辖范围</span></div><div class="line">    <span class="keyword">var</span> v1=<span class="keyword">new</span> Vue(&#123;</div><div class="line">        <span class="attr">el</span>:<span class="string">"#box"</span>,<span class="comment">//视图</span></div><div class="line">        data:&#123;<span class="comment">//数据</span></div><div class="line">            message:<span class="string">"哈哈哈"</span>,</div><div class="line">            <span class="attr">msg1</span>:<span class="string">"你好"</span>,</div><div class="line">            <span class="attr">msg2</span>:<span class="string">"他好"</span>,</div><div class="line">            <span class="attr">fn</span>:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">            &#125;,</div><div class="line">            <span class="attr">htmlStr</span>:<span class="string">"&lt;span&gt;1234&lt;/span&gt;"</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//在vue中对数据data做了处理，直接将data中的数据，赋给了当前实例</span></div><div class="line">    <span class="built_in">console</span>.log(v1.message);</div><div class="line">    v1.fn();<span class="comment">//当前实例</span></div><div class="line">    v1._data.fn();<span class="comment">//this=v1._data</span></div><div class="line">    v1.msg1=<span class="string">"555"</span>;<span class="comment">//更改内容</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2017/07/02/Vue简单教程/#more">more >></a>
         
@@ -723,28 +721,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="移动端配置"><a href="#移动端配置" class="headerlink" title="移动端配置"></a>移动端配置</h2><h3 id="准备工作1："><a href="#准备工作1：" class="headerlink" title="准备工作1："></a>准备工作1：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>width=device-width<ul>
-<li>宽度等于当前设备的宽度</li>
-</ul>
-</li>
-<li>initial-scale=1<ul>
-<li>初始缩放比例</li>
-</ul>
-</li>
-<li>minimum-scale=1<ul>
-<li>允许用户缩放的最小比例（默认值是1）</li>
-</ul>
-</li>
-<li>maximum-scale=1<ul>
-<li>允许用户缩放的最大比例（默认值是1）</li>
-</ul>
-</li>
-<li>user-scalable=no<ul>
-<li>是否允许用户缩放（默认值是no，一般都是不希望用户去缩小放大界面）</li>
-</ul>
-</li>
-</ul>
         
           <a class="article-more-a" href="/2017/06/11/移动端配置/#more">more >></a>
         
