@@ -143,6 +143,202 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数组和字符串的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/13/数组和字符串的方法/">数组和字符串的方法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/13/数组和字符串的方法/" class="archive-article-date">
+  	<time datetime="2017-05-13T11:18:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数组的9种方法"><a href="#数组的9种方法" class="headerlink" title="数组的9种方法"></a>数组的9种方法</h2><h3 id="1-增加"><a href="#1-增加" class="headerlink" title="1. 增加"></a>1. 增加</h3><pre><code>- push()向数组的末尾增加新内容
+    - 参数：一个或者多个
+    - 返回值：增加后新数组的长度
+    - 原数组：改变
+- unshift()向数组的开始位置增加新内容
+    - 参数：一个或多个
+    - 返回值：增加后新数组的长度
+    - 原数组：改变
+</code></pre><h3 id="2-删除"><a href="#2-删除" class="headerlink" title="2. 删除"></a>2. 删除</h3><pre><code>- pop()删除数组的最后一项
+    - 参数：没有参数
+    - 返回值：被删除项
+    - 原数组：改变
+- shift()删除数组第一项
+    - 参数：没有参数
+    - 返回值：被删除项
+    - 原数组：改变
+</code></pre><h3 id="3-查找"><a href="#3-查找" class="headerlink" title="3. 查找"></a>3. 查找</h3><pre><code>- slice()
+    - 参数：
+        - slice()：从索引0一直查找到最后，相当于将原来的数组克隆一份，等于slice(0)
+        - slice(n)：n&gt;0，从索引n开始一直到最后；n&lt;0，倒着数，最后一项索引是-1，n&gt;=ary.length--&gt;[]
+        - slice(n,m)：从索引n开始查找到索引m-1；n&gt;m--&gt;[]
+    - 返回值：查找出的内容组成的新数组
+    - 原数组：不改变
+</code></pre><h3 id="4-截取"><a href="#4-截取" class="headerlink" title="4. 截取"></a>4. 截取</h3><pre><code>- splice()
+    - 参数：
+        - splice()--&gt;[]
+        - splice(0)--&gt;从索引0开始，删除到末尾
+        - splice(n)--&gt;n&gt;=0，从索引n开始一直截取到最后；n&lt;0，倒着数，最后一项索引是-1
+        - splice(n,m)：从索引n开始截取m个，m&gt;=0；不够m个全截取
+        - splice(n,m,val1,val2....)：从索引n开始截取m个，用val1、val2...替补
+        - splice(n,0,val1...)：在索引n前插入val1...
+    - 返回值：截取出的内容组成的新数组
+    - 原数组：改变
+</code></pre><h3 id="5-数组拼接"><a href="#5-数组拼接" class="headerlink" title="5. 数组拼接"></a>5. 数组拼接</h3><pre><code>- concat()
+    - ary1.concat(ary2,ary3)
+    - 参数：可以多个
+    - 返回值：新数组
+    - 原数组：不改变
+</code></pre><h3 id="6-将数组按照指定字符拼成字符串"><a href="#6-将数组按照指定字符拼成字符串" class="headerlink" title="6. 将数组按照指定字符拼成字符串"></a>6. 将数组按照指定字符拼成字符串</h3><pre><code>- join(指定字符)
+</code></pre><h3 id="7-将数组倒叙"><a href="#7-将数组倒叙" class="headerlink" title="7. 将数组倒叙"></a>7. 将数组倒叙</h3><pre><code>- reverse()
+    - 原数组：改变
+    - 参数：没有参数
+</code></pre><h3 id="8-排序"><a href="#8-排序" class="headerlink" title="8. 排序"></a>8. 排序</h3><pre><code>- sort() 从小到大排序
+    - 原数组：改变
+    - 只能处理10以内的数
+- 从小到大排序
+    - ary.sort(function(a,b){return a-b})
+- 从大到小排序
+    - ary.sort(function(a,b){return b-a})
+</code></pre><h3 id="9-遍历"><a href="#9-遍历" class="headerlink" title="9. 遍历"></a>9. 遍历</h3><pre><code>- forEach()
+    - 没有返回值
+    - ary.forEach(function(item,index,input){})  //item：数组的当前项，index：对应的索引；input：原数组
+- map()
+    - 有返回值，返回新数组
+    - ary.map(function(item,index,input){})  //item：数组的当前项，index：对应的索引；input：原数组
+- 当前项在数组中第一次出现的索引
+    - indexOf()
+        - IE8下不支持
+        - 没有返回-1
+- 当前项在数组中最后一次出现的索引
+    - lastIndexOf()
+        - IE8下不支持
+        - 没有返回-1
+</code></pre><h4 id="以下为操作数组的几种实例："><a href="#以下为操作数组的几种实例：" class="headerlink" title="以下为操作数组的几种实例："></a><font color="#D28E95">以下为操作数组的几种实例：</font></h4><ul>
+<li>向数组末尾增加一个几种方法<ul>
+<li>ary.push(1);</li>
+<li>ary.splice(ary.length,0,1);</li>
+<li>ary[ary.length]=1;</li>
+<li>ary.concat(1);</li>
+</ul>
+</li>
+<li>删除最后一项<ul>
+<li>ary.pop();</li>
+<li>ary.splice(ary.length-1,1);</li>
+<li>ary.splice(-1,1);</li>
+<li>ary.length–;</li>
+<li>var ary1=ary.slice(0,ary.length-1);</li>
+</ul>
+</li>
+<li>得到一个跟原来一样的<ul>
+<li>ary.concat();</li>
+<li>ary.splice(0);</li>
+<li>ary.slice();</li>
+<li>ary.slice(0);</li>
+<li>var ary1=ary.map(function (i,n) return i);</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="字符串的5种方法"><a href="#字符串的5种方法" class="headerlink" title="字符串的5种方法"></a>字符串的5种方法</h2><h3 id="1-获取指定位置的字符"><a href="#1-获取指定位置的字符" class="headerlink" title="1. 获取指定位置的字符"></a>1. 获取指定位置的字符</h3><pre><code>- charAt(索引)    
+    - 返回值：当前索引对应的字符
+    - 原字符串：不改变
+</code></pre><h3 id="2-字符串截取"><a href="#2-字符串截取" class="headerlink" title="2. 字符串截取"></a>2. 字符串截取</h3><pre><code>- substr(n,m)，从索引n开始，截取m个字符
+    - 返回值：截取出的字符串
+    - 原字符串：不改变
+- substring(n,m) ，从索引n开始截取到索引m-1，不包含m
+    - 返回值：截取出的字符串
+    - 原字符串：不改变
+- slice(n,m)，从索引n开始截取到索引m-1，不包含m，但此方法支持参数为负值
+    - 支持负值作为索引(str.length+负数索引)
+    - 返回值：截取出的字符串
+    - 原字符串：不改变
+</code></pre><h3 id="3-查找指定字符所在字符串的索引值"><a href="#3-查找指定字符所在字符串的索引值" class="headerlink" title="3. 查找指定字符所在字符串的索引值"></a>3. 查找指定字符所在字符串的索引值</h3><pre><code>- indexOf(&quot;指定的字符&quot;)
+    - 返回值：该字符第一次出现位置的索引值
+- lastIndexOf(&quot;指定的字符&quot;)
+    - 返回值：该字符最后一次出现位置的索引值
+- search(&quot;指定的字符&quot;)
+    - 返回值：该字符第一次出现位置的索引值
+- 以上三种查找方法如果没找到，说明该字符串没有这个字符，返回-1
+- match(&quot;指定的字符&quot;)
+    - 返回值是一个数组[&quot;指定的字符&quot;,index:0,input&quot;123&quot;]，找不到返回null
+</code></pre><h3 id="4-大小写转换"><a href="#4-大小写转换" class="headerlink" title="4. 大小写转换"></a>4. 大小写转换</h3><pre><code>- toLowerCase()转化小写
+    - 原数组：不改变
+    - 返回值：转为小写的新数组
+- toUpperCase()转化为大写
+    - 原数组：不改变
+    - 返回值：转为大写的新数组
+</code></pre><h3 id="5-字符串替换"><a href="#5-字符串替换" class="headerlink" title="5. 字符串替换"></a>5. 字符串替换</h3><pre><code>- replace(old,new)
+    - 原字符串：不改变
+    - 返回值：一个修改后的新字符串
+    - 注意：只能进行一次替换，如果后面还有相同的字符串不能替换后面的字符，只能替换第一次遇到的字符
+</code></pre><h3 id="5-将字符串按照指定分隔符分成数组"><a href="#5-将字符串按照指定分隔符分成数组" class="headerlink" title="5. 将字符串按照指定分隔符分成数组"></a>5. 将字符串按照指定分隔符分成数组</h3><pre><code>- split(分隔符)
+    - 原字符串：不改变
+    - 返回值：一个按照分隔符分割形成的数组 
+    - 分隔符不会出现在数组中
+    - 不传入分隔符，会将字符串中每一个字符都分开
+    - 分隔符不存在于字符串中的时候，会将字符串当作数组中的一项
+</code></pre><hr>
+<h2 id="数学类算数法"><a href="#数学类算数法" class="headerlink" title="数学类算数法"></a>数学类算数法</h2><ul>
+<li>Math.abs()取绝对值</li>
+<li>Math.ceil()向上取整</li>
+<li>Math.floor()向下取整</li>
+<li>Math.round()四舍五入</li>
+<li>Math.max(val1,val2,val3…)取一组数值中最大的</li>
+<li>Math.min(val1,val2,val3….)取一组数值中最小的</li>
+<li>Math.random()获取[0,1)之间的随机小数（不包含1）</li>
+<li>Math.round(Math.random()*(m-n)+n)获取n-m之间的随机整数</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS教程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/13/数组和字符串的方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-楼层导航" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -5310,6 +5506,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">CSS3教程</a>
               </li>
              
@@ -5319,10 +5519,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mui框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
             
             <div class="clearfix"></div>

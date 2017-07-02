@@ -143,6 +143,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-括号表达式与继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/26/括号表达式与继承/">括号表达式与继承</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/26/括号表达式与继承/" class="archive-article-date">
+  	<time datetime="2017-05-26T11:28:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="括号表达式"><a href="#括号表达式" class="headerlink" title="括号表达式"></a>括号表达式</h2><ol>
+<li>保证一些操作语法符合浏览器的识别<ul>
+<li>自执行函数<code>(function(){})()</code></li>
+<li>基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如<code>1.toString</code>是错误的，应该写成<ul>
+<li><code>.toString</code>或者<code>(1).toString</code></li>
+<li><code>.toFixed(2)</code> 保留两位小数</li>
+</ul>
+</li>
+<li>引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者<code>({}).属性名({a:1,b:2}).a</code></li>
+<li>注意在用eval遇到{}表示对象的时候用小括号包起来</li>
+</ul>
+</li>
+<li>计算的时候优先级最高</li>
+<li>正则中()表示小分组，优先级也高</li>
+<li>本身也是有计算的效果<ul>
+<li>一个括号中如果包含多项，只会把最后一项的值（对于基本数据类型是值类型的，对于引用数据类型是地址值）copy过来，然后进行后续的处理</li>
+<li>最后一项是个函数，那么函数执行的时候里面的this是window</li>
+<li>注意一点：如果括号中只有一项，和不加括号没有区别</li>
+</ul>
+</li>
+</ol>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li><p>继承：子类继承父类的属性和方法</p>
+<ul>
+<li><p>原型继承:子类（F2）的原型指向父类（F1）的一个实例</p>
+<ul>
+<li>子类（F2）的原型上就会有通过父类（F1）得来的私有属性，还可以通过F2.prototype.<strong>proto</strong>得到F1原型上的公有属性</li>
+<li>在创建F2的实例的时候，就可以通过<strong>proto</strong>一级一级向上寻找到F1的原型</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x=<span class="number">100</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F2</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">F1.prototype.getX=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;;</div><div class="line">F2.prototype=<span class="keyword">new</span> F1();<span class="comment">//(原型继承的核心)</span></div><div class="line"><span class="comment">//F2.prototype是F1的实例</span></div><div class="line"><span class="comment">//F2.prototype.__proto__--&gt;F1.prototype</span></div><div class="line">F2.prototype.getX();</div><div class="line"><span class="keyword">var</span> f2=<span class="keyword">new</span> F2;</div><div class="line">f2.getX();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* call继承
+    * 判断对象中的属性是不是私有的一个方法，用hasOwnProperty(），对象.hasOwnProperty(&quot;属性名&quot;)
+    * 先用in判断一下有没有这个属性，没有就算了，有的话再用hasOwnProperty这个方法判断是不是私有的
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x=<span class="number">100</span>;</div><div class="line">    <span class="keyword">this</span>.y=<span class="number">200</span>;</div><div class="line">&#125;</div><div class="line">F1.prototype.getX=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//this是F2的实例，f2</span></div><div class="line">    <span class="comment">//F1() -&gt;this==window，想办法把F1执行时候里面的this变成f2</span></div><div class="line">    F1.call(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> f2=<span class="keyword">new</span> F2;</div><div class="line"><span class="built_in">console</span>.log(f2.x);</div></pre></td></tr></table></figure>
+
+
+* 冒充对象继承
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//for in</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x=<span class="number">100</span>;</div><div class="line">&#125;</div><div class="line">F1.prototype.getX=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//this -&gt;f2</span></div><div class="line">    <span class="keyword">var</span> f1=<span class="keyword">new</span> F1();</div><div class="line">    <span class="comment">//f1&#123;私有的x:100,公有的getX:function&#125;</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> f1)&#123;</div><div class="line">        <span class="keyword">if</span>(f1.hasOwnProperty(key))&#123;<span class="comment">//把他的私有属性放在this中</span></div><div class="line">            <span class="keyword">this</span>[key]=f1[key];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">this</span>.__proto__[key]=f1[key];<span class="comment">//把他的公有属性放在F2的原型中</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> f2=<span class="keyword">new</span> F2;<span class="comment">//&#123;x:100,getX:function&#125;</span></div></pre></td></tr></table></figure>
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS教程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/26/括号表达式与继承/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-正则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1191,111 +1293,6 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/05/26/隔行变色-显示行数-九九乘法表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-拖拽" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/25/拖拽/">拖拽</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/25/拖拽/" class="archive-article-date">
-  	<time datetime="2017-05-25T11:39:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="H5中的拖拽"><a href="#H5中的拖拽" class="headerlink" title="H5中的拖拽"></a>H5中的拖拽</h2><ol>
-<li>设置元素的可拖放性 draggable=”true”</li>
-<li>拖拽谁，给谁绑定事件 ondragstart=function(){}</li>
-<li>放到哪里？ondragover这个事件规定了在何处放置被拖动的属性<ul>
-<li>【注意：】默认无法将元素放到其他元素中，那么如果需要放置，就得阻止事件的默认行为 preventDefault</li>
-</ul>
-</li>
-<li>进行放置 ondrop 当被放置的数据脱手的时候<ul>
-<li>注意：ondrop事件中浏览器默认是以打开链接的方式打开，所以要阻止他的默认行为</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这里是html结构--&gt;</span></div><div class="line"><span class="comment">&lt;!--设置一个div，用来放置拖拽过来的图片--&gt;</span></div><div class="line"><span class="comment">&lt;!--设置一张图片，进行拖拽--&gt;</span></div><div class="line"><span class="comment">&lt;!--在这里事件函数只能传event--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ondragover</span>=<span class="string">"put(event)"</span> <span class="attr">ondrop</span>=<span class="string">"drop(event)"</span> <span class="attr">id</span>=<span class="string">"box1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">"true"</span> <span class="attr">src</span>=<span class="string">"img/1.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">ondragstart</span>=<span class="string">"drag(event)"</span> <span class="attr">id</span>=<span class="string">"img1"</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drag</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="comment">//ondragstart</span></div><div class="line">    <span class="comment">//设置被拖动元素的数据</span></div><div class="line">    <span class="comment">//e事件对象</span></div><div class="line">    <span class="comment">//e.dataTransfer:事件对象的可拖动数据</span></div><div class="line">    <span class="comment">//e.dataTransfer.setData(参数1，参数2) 设置事件对象的可拖动数据</span></div><div class="line">    <span class="comment">//参数1：设置被拖动元素的数据类型 "Image"</span></div><div class="line">    <span class="comment">//参数2：设置被拖动元素的id</span></div><div class="line">    e.dataTransfer.setData(<span class="string">"Image"</span>,e.target.id);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">put</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    e.preventDefault();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drop</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="comment">//注意：ondrop事件中浏览器默认是以打开链接的方式打开</span></div><div class="line">    <span class="comment">//所以要阻止他的默认行为</span></div><div class="line">    e.preventDefault();</div><div class="line"></div><div class="line">    <span class="comment">//获取放置进来的数据 获取出来的是他的ID</span></div><div class="line">    <span class="comment">//记住：setData中设置的什么类型这里就怎么写</span></div><div class="line">    <span class="keyword">var</span> id=e.dataTransfer.getData(<span class="string">"Image"</span>);</div><div class="line">    <span class="keyword">var</span> data=<span class="built_in">document</span>.getElementById(id);</div><div class="line">    e.target.appendChild(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="来回拖放-小案例"><a href="#来回拖放-小案例" class="headerlink" title="来回拖放-小案例"></a>来回拖放-小案例</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这里是html结构--&gt;</span></div><div class="line"><span class="comment">&lt;!--设置两个div，为存放拖拽后图片的地方，默认将一个图片放在某个div中--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box1"</span> <span class="attr">ondragover</span>=<span class="string">"put(event)"</span> <span class="attr">ondrop</span>=<span class="string">"drop(event)"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"img1"</span> <span class="attr">draggable</span>=<span class="string">"true"</span> <span class="attr">ondragstart</span>=<span class="string">"drag(event)"</span> <span class="attr">src</span>=<span class="string">"img/1.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box2"</span> <span class="attr">ondragover</span>=<span class="string">"put(event)"</span> <span class="attr">ondrop</span>=<span class="string">"drop(event)"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*这里是css样式*/</span></div><div class="line"><span class="selector-id">#box1</span>,<span class="selector-id">#box2</span>&#123;</div><div class="line">   <span class="attribute">width</span>: <span class="number">400px</span>;</div><div class="line">   <span class="attribute">height</span>: <span class="number">300px</span>;</div><div class="line">   <span class="attribute">float</span>: left;</div><div class="line">   <span class="attribute">padding</span>: <span class="number">20px</span>;</div><div class="line">   <span class="attribute">border</span>: <span class="number">3px</span> dashed <span class="number">#ddd</span>;</div><div class="line">   <span class="attribute">margin-left</span>: <span class="number">30px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">img</span>&#123;</div><div class="line">   <span class="attribute">width</span>: <span class="number">400px</span>;</div><div class="line">   <span class="attribute">height</span>: <span class="number">300px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是javascript代码</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drag</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">   e.dataTransfer.setData(<span class="string">"Image"</span>,e.target.id);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">put</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">   e.preventDefault();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drop</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">   e.preventDefault();</div><div class="line">   <span class="keyword">var</span> id=e.dataTransfer.getData(<span class="string">"Image"</span>);</div><div class="line">   <span class="keyword">var</span> data=<span class="built_in">document</span>.getElementById(id);</div><div class="line">   e.target.appendChild(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="H5中的关于拖放的事件"><a href="#H5中的关于拖放的事件" class="headerlink" title="H5中的关于拖放的事件"></a>H5中的关于拖放的事件</h2><ol>
-<li><p>对于被拖拽的元素</p>
-<ul>
-<li>ondragstart:开始拖住</li>
-<li>ondrag:正在拖住</li>
-<li>ondragend:拖拽结束</li>
-</ul>
-</li>
-<li><p>接受元素</p>
-<ul>
-<li>ondragenter:刚进来的时候</li>
-<li>ondragleave:刚松开的时候</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="拖拽-无兼容性问题"><a href="#拖拽-无兼容性问题" class="headerlink" title="拖拽-无兼容性问题"></a>拖拽-无兼容性问题</h2><ul>
-<li>拖拽分为三个阶段<ol>
-<li>鼠标按下抓住盒子 box.onmousedown</li>
-<li>按着鼠标拖着盒子走，这个过程是鼠标一直按着，也就是一直在onmousedown事件中，但是走的范围是在整个页面中走的，所以说onmousemove是给整个文档绑定的</li>
-<li>鼠标松开，放开盒子 onmouseup也是给document绑定的</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这里是html结构--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*这里是css样式*/</span></div><div class="line"><span class="selector-id">#box</span>&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">    <span class="attribute">position</span>: absolute;</div><div class="line">    <span class="attribute">left</span>: <span class="number">100px</span>;</div><div class="line">    <span class="attribute">top</span>: <span class="number">50px</span>;</div><div class="line">    <span class="attribute">background-color</span>: darkseagreen;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是javascript代码，拖拽简易版</span></div><div class="line"><span class="keyword">var</span> box=<span class="built_in">document</span>.getElementById(<span class="string">"box"</span>);</div><div class="line">box.onmousedown=<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="comment">//按下的时候记录鼠标到box的距离，存到自定义属性上</span></div><div class="line">    <span class="keyword">this</span>.l=e.clientX-<span class="keyword">this</span>.offsetLeft;</div><div class="line">    <span class="keyword">this</span>.t=e.clientY-<span class="keyword">this</span>.offsetTop;</div><div class="line"></div><div class="line">    <span class="comment">//拖着盒子在整个document中移动</span></div><div class="line">    <span class="built_in">document</span>.onmousemove=<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">         <span class="comment">//this==document</span></div><div class="line">         box.style.left=e.clientX-box.l+<span class="string">"px"</span>;</div><div class="line">         box.style.top=e.clientY-box.t+<span class="string">"px"</span>;</div><div class="line">         e.preventDefault();</div><div class="line">    &#125;;</div><div class="line">    <span class="built_in">document</span>.onmouseup=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">         <span class="comment">//鼠标松开之后，将move和up方法移除</span></div><div class="line">         <span class="built_in">document</span>.onmousemove=<span class="literal">null</span>;</div><div class="line">         <span class="built_in">document</span>.onmouseup=<span class="literal">null</span>;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是javascript代码，拖拽最终版</span></div><div class="line">&lt;script src=<span class="string">"js/public.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"js/events.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">var</span> box=<span class="built_in">document</span>.getElementById(<span class="string">"box"</span>);</div><div class="line">    on(box,<span class="string">"mousedown"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.strL=e.pageX-public.offset(<span class="keyword">this</span>).left;</div><div class="line">        <span class="keyword">this</span>.strT=e.pageY-public.offset(<span class="keyword">this</span>).top;</div><div class="line">        <span class="keyword">var</span> _this=<span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>._move=<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">            move.call(_this,e);</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">this</span>._up=<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">            up.call(_this,e);</div><div class="line">        &#125;;</div><div class="line">        on(<span class="built_in">document</span>,<span class="string">"mousemove"</span>,<span class="keyword">this</span>._move);</div><div class="line">        on(<span class="built_in">document</span>,<span class="string">"mouseup"</span>,<span class="keyword">this</span>._up);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="comment">//让this变为box</span></div><div class="line">        <span class="keyword">var</span> l=e.pageX-<span class="keyword">this</span>.strL;</div><div class="line">        <span class="keyword">var</span> t=e.pageY-<span class="keyword">this</span>.strT;</div><div class="line">        <span class="comment">//临界值</span></div><div class="line">        <span class="keyword">var</span> maxL=public.win(<span class="string">"clientWidth"</span>)-<span class="keyword">this</span>.offsetWidth;</div><div class="line">        <span class="keyword">var</span> maxT=public.win(<span class="string">"clientHeight"</span>)-<span class="keyword">this</span>.offsetHeight;</div><div class="line">        l=l&lt;<span class="number">0</span>?<span class="number">0</span>:(l&gt;maxL?maxL:l);</div><div class="line">        t=t&lt;<span class="number">0</span>?<span class="number">0</span>:(t&gt;maxT?maxT:t);</div><div class="line">        public.css(<span class="keyword">this</span>,&#123;<span class="attr">left</span>:l,<span class="attr">top</span>:t&#125;);</div><div class="line">        e.preventDefault();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">up</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="comment">//移除掉move事件和up事件</span></div><div class="line">        off(<span class="built_in">document</span>,<span class="string">"mousemove"</span>,<span class="keyword">this</span>._move);</div><div class="line">        off(<span class="built_in">document</span>,<span class="string">"mouseup"</span>,<span class="keyword">this</span>._up);</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/25/拖拽/">展开全文 >></a>
         </p>
       
 
@@ -5769,6 +5766,10 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">CSS3教程</a>
               </li>
              
@@ -5778,10 +5779,6 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mui框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
             
             <div class="clearfix"></div>
