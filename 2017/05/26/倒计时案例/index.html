@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://qiminghaonan.com">
-  <title>相册 | um-brella的博客</title>
+  <title>倒计时案例 | um-brella的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录">
-<meta property="og:type" content="website">
-<meta property="og:title" content="相册">
-<meta property="og:url" content="http://qiminghaonan.com/photos/index.html">
+  <meta name="description" content="获取当前时间的递增12345678910111213141516171819202122232425262728var div=document.createElement(&apos;div&apos;);document.body.appendChild(div);function z(n) &amp;#123;   n=Number(n);   if (n&amp;lt;10)&amp;#123;       return &quot;0&quot;+n">
+<meta name="keywords" content="JS实例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="倒计时案例">
+<meta property="og:url" content="http://qiminghaonan.com/2017/05/26/倒计时案例/index.html">
 <meta property="og:site_name" content="um-brella的博客">
-<meta property="og:description" content="记录">
-<meta property="og:updated_time" content="2017-05-12T03:01:52.000Z">
+<meta property="og:description" content="获取当前时间的递增12345678910111213141516171819202122232425262728var div=document.createElement(&apos;div&apos;);document.body.appendChild(div);function z(n) &amp;#123;   n=Number(n);   if (n&amp;lt;10)&amp;#123;       return &quot;0&quot;+n">
+<meta property="og:updated_time" content="2017-05-26T11:37:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相册">
-<meta name="twitter:description" content="记录">
+<meta name="twitter:title" content="倒计时案例">
+<meta name="twitter:description" content="获取当前时间的递增12345678910111213141516171819202122232425262728var div=document.createElement(&apos;div&apos;);document.body.appendChild(div);function z(n) &amp;#123;   n=Number(n);   if (n&amp;lt;10)&amp;#123;       return &quot;0&quot;+n">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -145,32 +146,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-photos" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-倒计时案例" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      相册
+      倒计时案例
     </h1>
   
 
+        
+        <a href="/2017/05/26/倒计时案例/" class="archive-article-date">
+  	<time datetime="2017-05-26T08:23:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
+</a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" href="./imgblog.css">
-<div id="imgMainTitle">
-    <a href="javascript:void(0)" target="_blank" rel="external">记录</a>
-    <!--<a class="photos-btn" target="_blank" href="http://qiminghaonan.com/imgcontect.html">所有图片</a>-->
-</div>
-<div id="imgMain">
-    <ul></ul>
-    <!--<a href="https://www.instagram.com/qz1069546975/" target="_blank" class="open-ins">图片正在加载中…</a>-->
-</div>
-
+        <h2 id="获取当前时间的递增"><a href="#获取当前时间的递增" class="headerlink" title="获取当前时间的递增"></a>获取当前时间的递增</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> div=<span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line"><span class="built_in">document</span>.body.appendChild(div);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">z</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">   n=<span class="built_in">Number</span>(n);</div><div class="line">   <span class="keyword">if</span> (n&lt;<span class="number">10</span>)&#123;</div><div class="line">       <span class="keyword">return</span> <span class="string">"0"</span>+n;</div><div class="line">   &#125;<span class="keyword">else</span>&#123;</div><div class="line">       <span class="keyword">return</span> n;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTime</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>();<span class="comment">// 获取本机时间</span></div><div class="line">   <span class="comment">// console.log(time);// Thu Apr 20 2017 10:33:40 GMT+0800 (中国标准时间)</span></div><div class="line">   <span class="keyword">var</span> year=time.getFullYear();<span class="comment">//设置 Date 对象中的年份（四位数字）</span></div><div class="line">   <span class="keyword">var</span> month=time.getMonth();<span class="comment">//根据世界时设置 Date 对象中的月份 (0 ~ 11)</span></div><div class="line">   <span class="keyword">var</span> day=time.getDate();<span class="comment">//从 Date 对象返回一个月中的某一天 (1 ~ 31)</span></div><div class="line">   <span class="keyword">var</span> week=time.getDay();<span class="comment">//从 Date 对象返回一周中的某一天 (0 ~ 6) 代表周日-周六</span></div><div class="line">   <span class="keyword">var</span> weeks=<span class="string">'日一二三四五六'</span>;</div><div class="line">   <span class="keyword">var</span> weekTody=<span class="string">"周"</span>+weeks.charAt(week);</div><div class="line">   <span class="keyword">var</span> hours=time.getHours();<span class="comment">//返回 Date 对象的小时 (0 ~ 23)</span></div><div class="line">   <span class="keyword">var</span> minutes=time.getMinutes();<span class="comment">//返回 Date 对象的分钟 (0 ~ 59)</span></div><div class="line">   <span class="keyword">var</span> seconds=time.getSeconds();<span class="comment">//返回 Date 对象的秒数 (0 ~ 59)</span></div><div class="line">   <span class="keyword">var</span> mSeconds=time.getMilliseconds();<span class="comment">//返回 Date 对象的毫秒(0 ~ 999)</span></div><div class="line">   <span class="keyword">var</span> str=year+<span class="string">"年"</span>+z((month+<span class="number">1</span>))+<span class="string">"月"</span>+z(day)+<span class="string">"日 "</span>+weekTody+z(hours)+<span class="string">":"</span>+z(minutes)+<span class="string">":"</span>+z(seconds)+<span class="string">":"</span>+z(mSeconds);</div><div class="line">   div.innerText=str;</div><div class="line">&#125;</div><div class="line">getTime();</div><div class="line"><span class="keyword">var</span> time=setInterval(getTime,<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="倒计时"><a href="#倒计时" class="headerlink" title="倒计时"></a>倒计时</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> box=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"div"</span>)[<span class="number">0</span>];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">z</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    n=<span class="built_in">Number</span>(n);</div><div class="line">    <span class="keyword">if</span> (n&lt;<span class="number">10</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"0"</span>+n;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> n;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">z1</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    n=<span class="built_in">Number</span>(n);</div><div class="line">    <span class="keyword">if</span> (n&lt;<span class="number">10</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"00"</span>+n;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (n&lt;<span class="number">100</span>&amp;&amp;n&gt;=<span class="number">10</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"0"</span>+n;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> n;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTime</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//目标时间  当前时间  还要多久到达目标时间</span></div><div class="line">    <span class="keyword">var</span> now=<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">    <span class="comment">//目标时间：2017／04／20 13：00：00</span></div><div class="line">    <span class="comment">//将目标时间的格式改编为计算机的标准时间</span></div><div class="line">    <span class="keyword">var</span> toDate=<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2017/04/20 13:00:00"</span>);<span class="comment">//在IE67下"-"不支持，要转为"／"</span></div><div class="line">    <span class="keyword">var</span> val=toDate-now;<span class="comment">//值是毫秒</span></div><div class="line">    <span class="comment">//将取到的毫秒差，转为X天、X时、X分、X秒</span></div><div class="line">    <span class="comment">//一天有24时，一小时有60分，一分钟有60秒，一秒有1000毫秒；一天有86400000</span></div><div class="line">    <span class="comment">//var day=parseInt(val/(24*60*60*1000));</span></div><div class="line">    <span class="keyword">var</span> day=<span class="built_in">Math</span>.floor(val/(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</div><div class="line">    <span class="built_in">console</span>.log(toDate);</div><div class="line">    <span class="comment">//val lastMsecond=val-day*(24*60*60*1000);</span></div><div class="line">    <span class="keyword">var</span> lastMsecond=val%(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</div><div class="line">    <span class="keyword">var</span> hour=<span class="built_in">Math</span>.floor(lastMsecond/(<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</div><div class="line">    lastMsecond=lastMsecond-hour*(<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</div><div class="line">    <span class="keyword">var</span> minutes=<span class="built_in">Math</span>.floor(lastMsecond/(<span class="number">60</span>*<span class="number">1000</span>));</div><div class="line">    lastMsecond=lastMsecond-minutes*(<span class="number">60</span>*<span class="number">1000</span>);</div><div class="line">    <span class="keyword">var</span> seconds=<span class="built_in">Math</span>.floor(lastMsecond/<span class="number">1000</span>);</div><div class="line">    lastMsecond=lastMsecond-seconds*<span class="number">1000</span>;</div><div class="line">    <span class="keyword">var</span> str=<span class="string">"距下课还有"</span>+day+<span class="string">"天"</span>+hour+<span class="string">"小时"</span>+z(minutes)+<span class="string">"分钟"</span>+z(seconds)+<span class="string">"秒"</span>+z1(lastMsecond)+<span class="string">"毫秒"</span>;</div><div class="line">    box.innerHTML=str;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> time=setInterval(getTime,<span class="number">1</span>);</div></pre></td></tr></table></figure>
       
 
       
@@ -178,6 +176,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS实例</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -228,7 +237,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://qiminghaonan.com/photos/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://qiminghaonan.com/2017/05/26/倒计时案例/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -240,9 +249,36 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2017/05/28/百度搜索/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          百度搜索
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/16/动画/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">动画</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
+
+
+  
+  
+  
+
+  
+
+  
 
 
           </div>
@@ -265,7 +301,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
