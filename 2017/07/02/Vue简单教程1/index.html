@@ -8,14 +8,17 @@
   <link rel="dns-prefetch" href="http://qiminghaonan.com">
   <title>Vue简单教程1 | um-brella的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Vue">
+  <meta name="description" content="数据绑定 Vue中显示数据，例如 在Vue1.0中，识别html需要多加一个{} 在Vue2.0中，识别html需要多加一个指令v-html，例如&amp;lt;div  v-html=&amp;quot;htmlStr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  123456789&amp;lt;body&amp;gt;	&amp;lt;div id=&quot;box&quot;&amp;gt;    	&amp;#123;&amp;#123;message&amp;#125;&amp;#">
+<meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue简单教程1">
 <meta property="og:url" content="http://qiminghaonan.com/2017/07/02/Vue简单教程1/index.html">
 <meta property="og:site_name" content="um-brella的博客">
-<meta property="og:updated_time" content="2017-07-02T10:17:41.000Z">
+<meta property="og:description" content="数据绑定 Vue中显示数据，例如 在Vue1.0中，识别html需要多加一个{} 在Vue2.0中，识别html需要多加一个指令v-html，例如&amp;lt;div  v-html=&amp;quot;htmlStr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  123456789&amp;lt;body&amp;gt;	&amp;lt;div id=&quot;box&quot;&amp;gt;    	&amp;#123;&amp;#123;message&amp;#125;&amp;#">
+<meta property="og:updated_time" content="2017-07-02T10:20:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue简单教程1">
+<meta name="twitter:description" content="数据绑定 Vue中显示数据，例如 在Vue1.0中，识别html需要多加一个{} 在Vue2.0中，识别html需要多加一个指令v-html，例如&amp;lt;div  v-html=&amp;quot;htmlStr&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  123456789&amp;lt;body&amp;gt;	&amp;lt;div id=&quot;box&quot;&amp;gt;    	&amp;#123;&amp;#123;message&amp;#125;&amp;#">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -163,7 +166,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><ul>
+<li><code>Vue</code>中显示数据，例如<code></code></li>
+<li>在<code>Vue1.0</code>中，识别<code>html</code>需要多加一个<code>{}</code></li>
+<li>在<code>Vue2.0</code>中，识别<code>html</code>需要多加一个指令<code>v-html</code>，例如<code>&lt;div  v-html=&quot;htmlStr&quot;&gt;&lt;/div&gt;</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box"</span>&gt;</span></div><div class="line">    	&#123;&#123;message&#125;&#125;,&#123;&#123;msg1&#125;&#125;,</div><div class="line">    	<span class="comment">&lt;!--Vue1.0中，如果想实现字符串中html的识别，在里面多加一个&#123;&#125;--&gt;</span></div><div class="line">    	<span class="comment">&lt;!--&#123;&#123;&#123;htmlStr&#125;&#125;&#125;--&gt;</span></div><div class="line">    	<span class="comment">&lt;!--在Vue2.0中给当前视图加一个指令 v-html --&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">div</span>  <span class="attr">v-html</span>=<span class="string">"htmlStr"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"js/vue1.0.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">    <span class="comment">//通过构造函数的方式得到vue实例</span></div><div class="line">    <span class="comment">//el：规定当前的这个vue实例管辖范围</span></div><div class="line">    <span class="keyword">var</span> v1=<span class="keyword">new</span> Vue(&#123;</div><div class="line">        <span class="attr">el</span>:<span class="string">"#box"</span>,<span class="comment">//视图</span></div><div class="line">        data:&#123;<span class="comment">//数据</span></div><div class="line">            message:<span class="string">"哈哈哈"</span>,</div><div class="line">            <span class="attr">msg1</span>:<span class="string">"你好"</span>,</div><div class="line">            <span class="attr">msg2</span>:<span class="string">"他好"</span>,</div><div class="line">            <span class="attr">fn</span>:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">            &#125;,</div><div class="line">            <span class="attr">htmlStr</span>:<span class="string">"&lt;span&gt;1234&lt;/span&gt;"</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//在vue中对数据data做了处理，直接将data中的数据，赋给了当前实例</span></div><div class="line">    <span class="built_in">console</span>.log(v1.message);</div><div class="line">    v1.fn();<span class="comment">//当前实例</span></div><div class="line">    v1._data.fn();<span class="comment">//this=v1._data</span></div><div class="line">    v1.msg1=<span class="string">"555"</span>;<span class="comment">//更改内容</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
       
 
       
