@@ -143,6 +143,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-楼层导航" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/13/楼层导航/">楼层导航</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/13/楼层导航/" class="archive-article-date">
+  	<time datetime="2017-05-13T10:29:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><blockquote>
+<ol>
+<li>针对不同导航点击跳转不同楼层页面</li>
+<li>滑动页面时楼层对应导航页面样式发生变化</li>
+</ol>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这里是html结构--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>美妆<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>服饰<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>家电<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>运动<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>吃货<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>母婴<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>图书<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>汽车<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>旅游<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"floor"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"0"</span>&gt;</span>美妆<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"1"</span>&gt;</span>服饰<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"2"</span>&gt;</span>家电<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"3"</span>&gt;</span>运动<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"4"</span>&gt;</span>吃货<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"5"</span>&gt;</span>母婴<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"6"</span>&gt;</span>图书<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"7"</span>&gt;</span>汽车<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"8"</span>&gt;</span>旅游<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"9"</span>&gt;</span>顶部<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是javascript代码</span></div><div class="line"><span class="keyword">var</span> oDivs=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line"><span class="keyword">var</span> floor=<span class="built_in">document</span>.getElementsByClassName(<span class="string">"floor"</span>)[<span class="number">0</span>];</div><div class="line"><span class="keyword">var</span> oLis=floor.getElementsByTagName(<span class="string">"li"</span>);</div><div class="line"><span class="keyword">var</span> timer=<span class="literal">null</span>;</div><div class="line"><span class="comment">//循环所有的div，给每个div添加400-600的随机高度和随机颜色</span></div><div class="line"><span class="comment">//把每个div上偏移量，存到对应的li上的自定义属性上</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;oDivs.length;i++)&#123;</div><div class="line">    oDivs[i].style.height=<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*(<span class="number">600</span><span class="number">-400</span>)+<span class="number">400</span>)+<span class="string">"px"</span>;</div><div class="line">    oDivs[i].style.backgroundColor=<span class="string">"rgb("</span>+<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*<span class="number">255</span>)+<span class="string">","</span>+<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*<span class="number">255</span>)+<span class="string">","</span>+<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*<span class="number">255</span>)+<span class="string">")"</span>;</div><div class="line">    oLis[i].setAttribute(<span class="string">"_h"</span>,public.offset(oDivs[i]).top);</div><div class="line">    oLis[<span class="number">9</span>].setAttribute(<span class="string">"_h"</span>,<span class="number">0</span>);</div><div class="line">    oLis[i].onclick=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">window</span>.onscroll=<span class="literal">null</span>;</div><div class="line">        select(<span class="keyword">this</span>);</div><div class="line">        <span class="built_in">window</span>.clearInterval(timer);</div><div class="line">        <span class="comment">//判断当前的scrollTop值跟当前点击的li存储的那个偏移量比较</span></div><div class="line">        <span class="comment">//如果大的话，让scrollTop值减小，反之增加</span></div><div class="line">        <span class="comment">//实现不断的增加不断的减小用到定时器</span></div><div class="line">        <span class="comment">//注意：到达临界值时，清除定时器</span></div><div class="line">        <span class="keyword">var</span> _H=public.win(<span class="string">"scrollTop"</span>);</div><div class="line">        <span class="keyword">var</span> _h=<span class="keyword">this</span>.getAttribute(<span class="string">"_h"</span>);</div><div class="line">        <span class="keyword">if</span>(_H&gt;_h)&#123;</div><div class="line">            timer=<span class="built_in">window</span>.setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span>(_H&lt;=_h)&#123;</div><div class="line">                    <span class="built_in">window</span>.onscroll=onFloor;</div><div class="line">                    <span class="built_in">window</span>.clearInterval(timer);</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                public .win(<span class="string">"scrollTop"</span>,_H-=<span class="number">10</span>);</div><div class="line">            &#125;,<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            timer=<span class="built_in">window</span>.setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span>(_H&gt;_h)&#123;</div><div class="line">                    <span class="built_in">window</span>.onscroll=onFloor;</div><div class="line">                    <span class="built_in">window</span>.clearInterval(timer);</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                public .win(<span class="string">"scrollTop"</span>,_H+=<span class="number">10</span>);</div><div class="line">            &#125;,<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">oLis[<span class="number">9</span>].onclick=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">window</span>.onscroll=<span class="literal">null</span>;</div><div class="line">    <span class="built_in">window</span>.clearInterval(timer);</div><div class="line">    select(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">var</span> _H=public.win(<span class="string">"scrollTop"</span>);</div><div class="line">    timer=<span class="built_in">window</span>.setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span>(_H&lt;=<span class="number">0</span>)&#123;</div><div class="line">            <span class="built_in">window</span>.onscroll=onFloor;</div><div class="line">            <span class="built_in">window</span>.clearInterval(timer);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        public .win(<span class="string">"scrollTop"</span>,_H-=<span class="number">10</span>);</div><div class="line">    &#125;,<span class="number">1</span>);</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">select</span>(<span class="params">ele</span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;oLis.length;i++)&#123;</div><div class="line">        oLis[i].className=<span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">    ele.className=<span class="string">"select"</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.onscroll=onFloor;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onFloor</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> _H=public.win(<span class="string">"scrollTop"</span>);</div><div class="line">    <span class="keyword">var</span> _H2=<span class="built_in">Math</span>.floor(public.win(<span class="string">"clientHeight"</span>)/<span class="number">2</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;oDivs.length<span class="number">-1</span>;i++)&#123;</div><div class="line">        <span class="keyword">var</span> _t1=oLis[i].getAttribute(<span class="string">"_h"</span>);</div><div class="line">        <span class="keyword">var</span> _t2=oLis[i+<span class="number">1</span>].getAttribute(<span class="string">"_h"</span>);</div><div class="line">        <span class="keyword">if</span>(_t2-_H2&gt;=_H&amp;&amp;_H&gt;=_t1-_H2)&#123;</div><div class="line">            select(oLis[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(_H&gt;oLis[<span class="number">8</span>].getAttribute(<span class="string">"_h"</span>)-_H2)&#123;</div><div class="line">            select(oLis[<span class="number">8</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS实例</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/13/楼层导航/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-华为商品排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -5229,11 +5294,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
+                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -5242,10 +5307,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JS练习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

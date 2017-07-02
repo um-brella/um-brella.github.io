@@ -143,6 +143,309 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-正则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/26/正则/">正则</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/26/正则/" class="archive-article-date">
+  	<time datetime="2017-05-26T10:31:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ul>
+<li><p>说明：正则就是用来处理复杂字符串</p>
+<ol>
+<li>匹配字符串的格式是否正确 -&gt;正则匹配 test(true、false)</li>
+<li>把匹配的内容找出来 -&gt;正则的捕获 exec(返回值是一个数组)</li>
+</ol>
+</li>
+<li><p>语法：<br>  <code>var reg=/didi/g;</code></p>
+<ol>
+<li>写在／／中间的部分都是元字符 必须要有</li>
+<li>写在／／后面的是修饰符，只有三种：g(全局匹配) i(忽略大小写) m(换行匹配)</li>
+</ol>
+</li>
+<li><p>具有特殊意义的元字符</p>
+<ul>
+<li><p><code>\</code>:转义符 把具有特殊意义的字符转为本来的意思</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">'I\'m a person'</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\\d/</span>;</div><div class="line"><span class="keyword">var</span> s1=<span class="string">"\\d"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(s1));</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>^</code>:以…开头</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^1/</span>;<span class="comment">//匹配以1开头的字符串</span></div><div class="line"><span class="keyword">var</span> s1=<span class="string">"123"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(s1));</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>$</code>:以…结尾</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/12$/</span>;<span class="comment">//匹配以2结尾，前面要有1的字符串</span></div><div class="line"><span class="keyword">var</span> s1=<span class="string">"1312"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(s1));</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果是规定了开头和结尾，中间内容就固定了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^6abc7$/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"67"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"6abc7"</span>));</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>\d</code>: <br>0-9中的任意一个</p>
+</li>
+<li><code>\D</code>: <br>除了\d以外的任意一个</li>
+<li><code>\w</code>: <br>0-9，a-z，A-Z，_ 一共63个，这63个中的任意一个</li>
+<li><code>\W</code>: <br>表示除了\w 以外的任意一个</li>
+<li><code>\n</code>: <br>匹配一个换行符</li>
+<li><code>\s</code>: <br>空白符 （常用来表示空格、制表符、换页符）</li>
+<li><code>\S</code>: <br>匹配一个非空白符</li>
+<li><code>\b</code>: <br>匹配一个边界</li>
+<li><p><code>.</code>: <br>查找单个字符，除了换行和行结束符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\ba/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"ab"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"bbb a"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"bbba"</span>));</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* `\B`: &lt;br&gt;匹配一个非边界
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="regexp">/\Bb/</span>.test(<span class="string">"b"</span>));</div><div class="line"><span class="built_in">console</span>.log(<span class="regexp">/\Bb/</span>.test(<span class="string">"abb"</span>));</div></pre></td></tr></table></figure>
+</code></pre><hr>
+<h2 id="正则创建方式"><a href="#正则创建方式" class="headerlink" title="正则创建方式"></a>正则创建方式</h2><ul>
+<li>字面量创建</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d/</span>;<span class="comment">//字面量创建方式</span></div></pre></td></tr></table></figure>
+<ul>
+<li>构造函数创建</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg1=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\d"</span>);<span class="comment">//构造函数创建方式，遇到／变成／／</span></div><div class="line"><span class="comment">//构造函数方式创建可以实现变量的拼接</span></div></pre></td></tr></table></figure>
+<p>例如：如下两种创建方式效果相同</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num=<span class="number">2017</span>;</div><div class="line"><span class="keyword">var</span> str=<span class="string">"zhufeng*2017*peixun"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[a-z]+\*\d&#123;4&#125;\*[a-z]+$/</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"^[a-z]+\\*"</span>+num+<span class="string">"\\*[a-z]+$"</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>匹配小数 </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(\d|[1-9]\d+)\.\d+$/</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>匹配有效数字</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^-?(\d|[1-9]\d+)(\.\d)?$/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"1.3"</span>));</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="正则的捕获"><a href="#正则的捕获" class="headerlink" title="正则的捕获"></a>正则的捕获</h2><ul>
+<li><p>exec捕获，两个阶段</p>
+<ol>
+<li>匹配，判断字符串是否匹配正则，不匹配返回null</li>
+<li><p>捕获，把匹配字符串中的内容捕获出来，返回一个数组</p>
+<ul>
+<li>[第一项：捕获的内容，index：捕获的内容首字符在原字符串中的索引，input：原字符串]</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"abcdefg"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));<span class="comment">//null</span></div><div class="line"><span class="keyword">var</span> str=<span class="string">"2017年5yue4hao"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>正则的懒惰型。捕获的时候只捕获第一次匹配的内容，正则中有一个属性叫lastIndex表示开始查找的索引</p>
+<ul>
+<li><p>解决懒惰型，就是加上修饰符g<code>var reg=/\d/g;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ary=[];</div><div class="line"><span class="keyword">var</span> re=reg.exec(str);</div><div class="line"><span class="keyword">while</span> (re)&#123;</div><div class="line">    ary.push(re[<span class="number">0</span>]);</div><div class="line">    re=reg.exec(str)</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(ary);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* 字符串方法解决
+    * match 他是字符串的方法   str.match(正则表达式)
+
+    &gt; 注意:&lt;br&gt;1.用match的时候正则表达式必须加上修饰符g，否则就跟exec的结果一样了&lt;br&gt;2.加上g后的match 返回值也是一个数组，但是没有index和input属性
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"kafja934nkfaf83"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d/</span>;</div><div class="line"><span class="built_in">console</span>.log(str.match(reg));</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d/g</span>;</div><div class="line"><span class="built_in">console</span>.log(str.match(reg));</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li>小括号的问题<ul>
+<li>有分组的时候，一个小括号代表一个分组</li>
+<li>exec:返回值是一个数组<ul>
+<li>第一项：大正则捕获的内容</li>
+<li>第二项：第一个分组捕获的内容</li>
+<li>…..</li>
+</ul>
+</li>
+<li>index：大正则捕获的内容的首字符的索引</li>
+<li>input：原字符串</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="正则的贪婪性"><a href="#正则的贪婪性" class="headerlink" title="正则的贪婪性"></a>正则的贪婪性</h2><ul>
+<li><p>贪婪性<br><br>虽然只捕获一次，但是把这次满足条件的全都捕获出来</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d+/</span>;</div><div class="line"><span class="keyword">var</span> str=<span class="string">"women2017年第4期kao100fenmeiyong"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何解决贪婪性<br><br>在量词元字符后加上？号</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d+?/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div></pre></td></tr></table></figure>
+</li>
+<li><p>关于？的问题<br><br>?: 加在小括号里面前面表示只匹配不捕获</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"js[2016]css[2017]html[2018]"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/[a-z]+(?:\[\d&#123;4&#125;\])/</span>;</div><div class="line"><span class="comment">//因为?:表示不捕获，所以\1就没有代表的内容</span></div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="分组捕获"><a href="#分组捕获" class="headerlink" title="分组捕获"></a>分组捕获</h2><ul>
+<li><p>exec返回值是一个数组</p>
+<ol>
+<li>第一项：大正则捕获的内容</li>
+<li>第二项：第一个分组捕获的内容</li>
+<li>第三项：第二个分组捕获的内容<br>…..</li>
+<li>index：第一项中大正则捕获内容首字符的索引</li>
+<li><p>input：原字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"html5css3es6"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/([a-z]+)(\d)/g</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div><div class="line"><span class="keyword">var</span> a=<span class="string">""</span>;</div><div class="line">   <span class="keyword">var</span> re=reg.exec(str);</div><div class="line">   <span class="keyword">while</span> (re)&#123;</div><div class="line">       a+=re[<span class="number">1</span>]+<span class="string">"版本是"</span>+re[<span class="number">2</span>]+<span class="string">"\n"</span>;</div><div class="line">       re=reg.exec(str);</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(a);</div><div class="line">   <span class="keyword">var</span> obj=&#123;&#125;;</div><div class="line">   <span class="keyword">var</span> re=reg.exec(str);</div><div class="line">   <span class="keyword">while</span> (re)&#123;</div><div class="line">       obj[re[<span class="number">1</span>]]=re[<span class="number">2</span>];</div><div class="line">       re=reg.exec(str);</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(obj);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>match<br>有分组的时候正则加上g，捕获不到分组的内容</p>
+<ul>
+<li>不加修饰符g，跟exec结果一样，只能捕获一次</li>
+<li>总结一句：如果有分组，想要获取分组的内容只能用exec了</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="字符串几个重要方法"><a href="#字符串几个重要方法" class="headerlink" title="字符串几个重要方法"></a>字符串几个重要方法</h2><ul>
+<li><p>search()<br>返回值是首字母的索引，没有返回-1</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\*\d+/g</span>;</div><div class="line"><span class="keyword">var</span> str=<span class="string">"zhufeng*2017*peixunhtml5"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.search(reg));</div></pre></td></tr></table></figure>
+</li>
+<li><p>split（正则）<br>按照正则匹配的字符进行拆分为数组</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">'https://www.baidu.com/s?wd=a&amp;rsv_spt=1&amp;rsv_iqid=0x88dc909800021c57&amp;issp=1&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=2&amp;ie=utf-8&amp;rqlang=cn&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;oq=a&amp;rsv_t=3eaan%2BBwTztxTocuaOWsst22qcDp9XJG488qbSzo%2BZpNC5b2mGTelGcahSJZShPjBPAI&amp;rsv_pq=f42b8d010001ef23'</span>;</div><div class="line">s=<span class="built_in">window</span>.decodeURI(s);</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\?|&amp;/g</span>;</div><div class="line"><span class="built_in">console</span>.log(s.split(reg));</div><div class="line"><span class="keyword">var</span> ary=s.split(reg);</div><div class="line">ary.shift();</div><div class="line"><span class="keyword">var</span> obj=&#123;&#125;;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;ary.length;i++)&#123;</div><div class="line">    <span class="keyword">var</span> a=ary[i].split(<span class="string">"="</span>);</div><div class="line">    obj[a[<span class="number">0</span>]]=a[<span class="number">1</span>];</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(obj);</div></pre></td></tr></table></figure>
+</li>
+<li><p>replace()<br>使用正则加上修饰g，就可以全部换完了</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">"   s1 s2   a1 v1"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\s+/g</span>;</div><div class="line">s=s.replace(reg,<span class="string">" "</span>);</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\s+|\s+$/g</span>;<span class="comment">//匹配首尾有空格</span></div><div class="line">s=s.replace(reg,<span class="string">""</span>);</div><div class="line"><span class="built_in">console</span>.log(s);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>4.replace(正则，function(){})</p>
+<ul>
+<li>replace中的第二个参数可以传一个函数，替换一次执行一次，每一次执行都会默认给它传参数        <ul>
+<li>第一个参数：arguments[0]：大正则匹配的内容</li>
+<li>第二个参数：arguments[1]：第一个分组匹配的内容</li>
+<li>第三个参数：arguments[2]：第二个分组匹配的内容<br>…….</li>
+</ul>
+</li>
+<li>第一个参数的索引</li>
+<li>原字符串</li>
+<li><p>return什么就替换什么</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"html12000js14000node6000"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/([a-z]+)(\d+)/g</span>;</div><div class="line">str=str.replace(reg,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//console.log(arguments);</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">arguments</span>[<span class="number">1</span>]+<span class="string">"学费是:"</span>+<span class="built_in">arguments</span>[<span class="number">2</span>]+<span class="string">"\n"</span>;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(str);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">'https://www.baidu.com/s?wd=a&amp;rsv_spt=1&amp;rsv_iqid=0x88dc909800021c57&amp;issp=1&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=2&amp;ie=utf-8&amp;rqlang=cn&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;oq=a&amp;rsv_t=3eaan%2BBwTztxTocuaOWsst22qcDp9XJG488qbSzo2BZpNC5b2mGTelGcahSJZShPjBPAI&amp;rsv_pq=f42b8d010001ef23'</span>;</div><div class="line">s=<span class="built_in">window</span>.decodeURI(s);</div><div class="line">s=s.split(<span class="string">"?"</span>)[<span class="number">1</span>];</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/(\w+)=(\w+-*%*\w*)&amp;?/g</span>;</div><div class="line">s=s.replace(reg,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">arguments</span>[<span class="number">1</span>]+<span class="string">":'"</span>+<span class="built_in">arguments</span>[<span class="number">2</span>]+<span class="string">"',"</span>;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(s);</div><div class="line">s=s.substr(<span class="number">0</span>,s.length<span class="number">-1</span>);</div><div class="line"><span class="built_in">console</span>.log(s);</div><div class="line"><span class="keyword">var</span> obj=<span class="built_in">eval</span>(<span class="string">"(&#123;"</span>+s+<span class="string">"&#125;)"</span>);</div><div class="line"><span class="built_in">console</span>.log(obj);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="竖线和中括号问题"><a href="#竖线和中括号问题" class="headerlink" title="竖线和中括号问题"></a>竖线和中括号问题</h2><ul>
+<li><p><code>x|y</code>: <br>x或y中的一个</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(0|1)$/</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>[xy]</code>: </p>
+<ul>
+<li>x，y中选的一个</li>
+<li><code>[xyzmn]</code>:五个中选一个</li>
+</ul>
+</li>
+<li><code>[^xy]</code>:<br> 不是x，y就可以</li>
+<li><code>[a-z]</code>: <ul>
+<li>a到z中的一个</li>
+<li>表示a-z A-Z [a-zA-Z]</li>
+</ul>
+</li>
+<li><p>[]中除有特殊意义的字符（^ - \），其他的在[]里面都是普通元字符的意义；但是\还是可以转义</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="regexp">/^[2*]/</span>.test(<span class="string">'2'</span>));</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>|</code> 如果没有小括号的情况下，最后看<code>|</code></p>
+</li>
+<li><p>比较<code>x|y</code>和<code>[x|y]</code>的区别</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^10|89$/</span>;<span class="comment">//以10开头或者以89结尾</span></div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[10|89]$/</span>;<span class="comment">//以1，0，|，8，9中的一个</span></div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[10-89]$/</span>;<span class="comment">//1,0-8,9中的一个</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>()分组</p>
+<ul>
+<li>把大正则分成几个小正则</li>
+<li><p>作用：</p>
+<ul>
+<li><p>改变默认优先级，先运算括号里面的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(1[89]|[2-6]\d|7[0-5])$/</span>;</div><div class="line"><span class="comment">//18-75</span></div><div class="line">reg.test(<span class="string">"19"</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* 分组，表示一个小分组，`\1` 第一个分组匹配的内容
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\w(\w)\1\w$/</span>;</div><div class="line">reg.test(<span class="string">"good"</span>);</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><p>身份证18位</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[1-8]\d&#123;16&#125;[\dX]$/</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[1-8]\d&#123;16&#125;(\d|X)$/</span>;</div><div class="line">reg.test(<span class="string">"03010819940424041X"</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>姓名</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[\u4e00-\u9fa5]&#123;2,4&#125;$/</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>密码：数字，大小写字母，_，所有标点符号 6-16</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(\w|,|\.|\?|~|!|@|#|\$|%|\^|&amp;|\*|-|\+|'|"|:|;)$/</span>;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>邮箱</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(\w|-|\+|\.)+@((\W|-)+\.)+([0-9a-zA-Z])+$/</span>;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="正则量词元字符"><a href="#正则量词元字符" class="headerlink" title="正则量词元字符"></a>正则量词元字符</h2><ul>
+<li><p><code>*</code>: 表示前面的元字符出现0-多次</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d\.*/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"12"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"12."</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"12.1"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"12.1.1.1"</span>));</div><div class="line"></div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\d\.*$/</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>+</code>:前面的元字符出现1到多次</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^.+\d/</span>;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p><code>?</code>:表示前面的元字符出现0或1次</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\d+\.?/</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\*+\+?$/</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>{n}</code>: 前面的元字符就出现n次</p>
+</li>
+<li><code>{n,}</code>: 前面的元字符出现n到多次  </li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS教程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/26/正则/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-改变this的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -993,105 +1296,6 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/05/25/拖拽/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-JQ请求方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/25/JQ请求方法/">JQ请求方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/25/JQ请求方法/" class="archive-article-date">
-  	<time datetime="2017-05-25T05:36:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="load"><a href="#load" class="headerlink" title="load"></a>load</h2><p>语法：load(“请求地址url”,传给服务器的参数,回调函数)</p>
-<ul>
-<li>第一个参数是必须的，后俩可选</li>
-<li>传给服务器的参数，不传的话表示的是get请求，传了的话表示post请求</li>
-<li>回调函数不管你请求成功没有都会执行<ul>
-<li>回调函数默认给他传了三个参数：<ul>
-<li>responseText:返回的数据</li>
-<li>textStatus:请求状态信息</li>
-<li>XHR:请求对象</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是get文件夹下的11.html文档</span></div><div class="line">&lt;body&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li&gt;唐僧&lt;/li&gt;</div><div class="line">    &lt;li&gt;猪八戒&lt;/li&gt;</div><div class="line">    &lt;li&gt;孙悟空&lt;/li&gt;</div><div class="line">    &lt;li&gt;沙和尚&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;<span class="regexp">/body&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#get"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    $(<span class="string">"#box"</span>).load(<span class="string">"get/11.html"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">responseText,textStatus,XHR</span>) </span>&#123;</div><div class="line">        <span class="comment">/*</span></div><div class="line">        console.log(responseText);//11.html的所有数据内容</div><div class="line">        console.log(textStatus);//success或error</div><div class="line">        console.log(XHR);//请求对象具体内容</div><div class="line">        */</div><div class="line">        <span class="comment">//将传回来的数据根据`body`标签进行拆分，只需要`ul`标签內的内容</span></div><div class="line">        <span class="keyword">var</span> str=responseText.split(<span class="string">"&lt;body&gt;"</span>)[<span class="number">1</span>].split(<span class="string">"&lt;/body&gt;"</span>)[<span class="number">0</span>];</div><div class="line">        <span class="comment">//将`ul`标签內的内容放到$("#get")下</span></div><div class="line">        $(<span class="keyword">this</span>).html(str);</div><div class="line">    &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="get"><a href="#get" class="headerlink" title="$.get"></a><code>$.get</code></h2><p>语法：<code>$.get(url,传给后台的数据,回调函数)</code></p>
-<ul>
-<li>这个回调函数只有在请求成功之后才会执行</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是get文件夹下的data.txt文件</span></div><div class="line">[&#123;<span class="string">"name"</span>:<span class="string">"a"</span>,<span class="string">"age"</span>:<span class="string">"1"</span>&#125;,</div><div class="line">&#123;<span class="string">"name"</span>:<span class="string">"b"</span>,<span class="string">"age"</span>:<span class="string">"2"</span>&#125;,</div><div class="line">&#123;<span class="string">"name"</span>:<span class="string">"c"</span>,<span class="string">"age"</span>:<span class="string">"3"</span>&#125;]</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//function(data(返回的数据),status(状态信息))</span></div><div class="line">$(<span class="string">"#get1"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    $.get(<span class="string">"get/data.txt"</span>,&#123;<span class="string">"name"</span>:<span class="string">"aa"</span>&#125;,<span class="function"><span class="keyword">function</span> (<span class="params">data,status</span>) </span>&#123;</div><div class="line">        <span class="comment">//将JSON字符串转为JSON对象</span></div><div class="line">        data=<span class="built_in">JSON</span> <span class="keyword">in</span> <span class="built_in">window</span>?<span class="built_in">JSON</span>.parse(data):<span class="built_in">eval</span>(<span class="string">"("</span>+data+<span class="string">")"</span>);</div><div class="line">        $.each(data,<span class="function"><span class="keyword">function</span> (<span class="params">index,item</span>) </span>&#123;&#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="post"><a href="#post" class="headerlink" title="$.post()"></a><code>$.post()</code></h2><p>语法：<code>$.post()</code> 跟get方式一样用，只不过必须给后台传参数</p>
-<h2 id="将请求回来的数据变为JSON对象"><a href="#将请求回来的数据变为JSON对象" class="headerlink" title="将请求回来的数据变为JSON对象"></a>将请求回来的数据变为JSON对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.getJSON(<span class="string">"get/data.txt"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(data);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="JQ中的Ajax"><a href="#JQ中的Ajax" class="headerlink" title="JQ中的Ajax"></a>JQ中的Ajax</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">   <span class="attr">type</span>:<span class="string">"get"</span>,<span class="comment">//请求方式 get post</span></div><div class="line">   url:<span class="string">"get/data.txt"</span>,<span class="comment">//请求地址,都是后台给的</span></div><div class="line">   <span class="keyword">async</span>:<span class="literal">false</span>,<span class="comment">//是否异步</span></div><div class="line">   timeout:<span class="number">300</span>,<span class="comment">//请求时间，你规定的，如果超时就算失败</span></div><div class="line">   data:&#123;<span class="string">"name"</span>:<span class="string">"aa"</span>&#125;,<span class="comment">//传给后台的数据，如果你用get方式请求，可以直接把数据拼接到url上，或者写在这里（也会自动给你加在url上）</span></div><div class="line">   dataType:<span class="string">"json"</span>,<span class="comment">//你规定给你返回数据的格式,如果后台返回给你的数据格式不是你想要的，会自动转成你想要的</span></div><div class="line">   beforeSend:<span class="function"><span class="keyword">function</span> (<span class="params">xhr</span>) </span>&#123;</div><div class="line">       <span class="comment">//xhr 请求对象 Ajax对象</span></div><div class="line">       <span class="comment">//请求发出去之前执行的函数，如果你想拦截请求就在这里拦截</span></div><div class="line">       <span class="built_in">console</span>.log(<span class="string">"请求发送之前"</span>);</div><div class="line">   &#125;,</div><div class="line">   <span class="attr">complete</span>:<span class="function"><span class="keyword">function</span> (<span class="params">xhr,textStatus</span>) </span>&#123;</div><div class="line">       <span class="comment">//请求发送之后执行，不管成没成功</span></div><div class="line">       <span class="comment">//xhr 请求对象 Ajax对象</span></div><div class="line">       <span class="comment">//textStatus 请求状态信息</span></div><div class="line">       <span class="built_in">console</span>.log(textStatus);</div><div class="line">   &#125;,</div><div class="line">   <span class="attr">success</span>:<span class="function"><span class="keyword">function</span> (<span class="params">data,textStatus</span>) </span>&#123;</div><div class="line">       <span class="comment">//请求成功后执行</span></div><div class="line">       <span class="comment">//data：返回的数据</span></div><div class="line">       <span class="comment">//textStatus 请求状态信息</span></div><div class="line">       <span class="built_in">console</span>.log(<span class="string">"请求成功"</span>);</div><div class="line">   &#125;,</div><div class="line">   <span class="attr">error</span>:<span class="function"><span class="keyword">function</span> (<span class="params">xhr,textStatus,errorThrown</span>) </span>&#123;</div><div class="line">       <span class="comment">//xhr 请求对象 Ajax对象</span></div><div class="line">       <span class="comment">//textStatus 请求状态信息</span></div><div class="line">       <span class="comment">//errorThrown 错误信息</span></div><div class="line">   &#125;,</div><div class="line">   <span class="attr">global</span>:<span class="literal">false</span><span class="comment">//是否会触发全局请求</span></div><div class="line">   <span class="comment">//比如你把这次请求加在一个事件内，触发这个事件行为的时候才会请求，如果加上global:true，不用你触发事件，打开页面就会先请求一次</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="表单页面携带信息跳转（一）"><a href="#表单页面携带信息跳转（一）" class="headerlink" title="表单页面携带信息跳转（一）"></a>表单页面携带信息跳转（一）</h2><p>运用H5元素，有兼容性问题</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这里是html结构，使用H5元素跳转--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"表单跳转页面.html"</span> <span class="attr">method</span>=<span class="string">"get"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"user"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"passWord"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"box"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"sel"</span> <span class="attr">id</span>=<span class="string">""</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是表单跳转页面.html</span></div><div class="line"><span class="comment">//获取页面url</span></div><div class="line"><span class="keyword">var</span> url=<span class="built_in">window</span>.location.href;</div><div class="line"><span class="comment">//将页面url进行转码</span></div><div class="line">url=<span class="built_in">window</span>.decodeURI(url);</div><div class="line"><span class="built_in">console</span>.log(url);</div><div class="line"><span class="comment">//转码之后的链接</span></div><div class="line"><span class="comment">//http://localhost:63342/第三天/表单跳转页面.html?user=342&amp;passWord=rwr&amp;box=on&amp;sel=3</span></div><div class="line"><span class="comment">//将url通过？进行拆分，再将=替换</span></div><div class="line"><span class="keyword">var</span> s1=url.split(<span class="string">"?"</span>)[<span class="number">1</span>].replace(<span class="regexp">/=/g</span>,<span class="string">":'"</span>);</div><div class="line">s1=s1.replace(<span class="regexp">/&amp;/g</span>,<span class="string">"',"</span>);</div><div class="line"><span class="comment">//变成一个对象</span></div><div class="line"><span class="keyword">var</span> obj=<span class="built_in">eval</span>(<span class="string">"(&#123;"</span>+s1+<span class="string">"'&#125;)"</span>);</div><div class="line"><span class="keyword">var</span> str2=<span class="string">""</span>;</div><div class="line"><span class="comment">//循环对象的属性，将属性名和属性值分别用`span`标签包起来</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</div><div class="line">    str2+=<span class="string">"&lt;span&gt;"</span>+key+<span class="string">"&lt;/span&gt;&lt;span&gt;"</span>+obj[key]+<span class="string">"&lt;/span&gt;&lt;br&gt;"</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//将获取的表单元素内容放到body內</span></div><div class="line"><span class="built_in">document</span>.body.innerHTML+=str2;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="表单页面携带信息跳转（二）"><a href="#表单页面携带信息跳转（二）" class="headerlink" title="表单页面携带信息跳转（二）"></a>表单页面携带信息跳转（二）</h2><ol>
-<li>action=”” 就是你提交数据的地址，不写就是默认本地址</li>
-<li>method=”” 请求方式 默认是get，当你点击提交按钮submit的时候</li>
-<li><code>&lt;input type=&quot;submit&quot;&gt;</code>是form表单中自带的提交按钮是H5标签有兼容性，会将表单中的内容以name=vale&amp;&amp;name=value的形式添加到url上，所以以后在真实工作中表单中的那些标签的name值都是后台规定的</li>
-<li>有的时候我们不是传给后台，而是带参数跳转到其他页面，在其他页面中使用当前页面的数据，也就是在打开其他页面地址的时候，在后面拼接上你的参数，可以用原生的方法循环，一个个拼接，在JQ中给你提供了一个方法，serialize()，也会将参数变成name=value$name=value….，</li>
-<li>把这个序列化的字符串加在地址后面，但是你得先判断一下地址之前有没”?”，有的话说明之前有数据了，就在前面拼接个”&amp;”，没有的话就在前面拼接个”?”</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--使用button键进行跳转--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"get"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"user"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"passWord"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"box"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"sel"</span> <span class="attr">id</span>=<span class="string">""</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"sub"</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"js/jquery-3.2.1.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="string">"#sub"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    	<span class="comment">//获取form表单中存储的信息</span></div><div class="line">        <span class="keyword">var</span> url=$(<span class="string">"form"</span>).serialize();</div><div class="line">        <span class="comment">//打开页面</span></div><div class="line">        <span class="comment">//window.open("http://localhost:63342/%E7%AC%AC%E4%B8%89%E5%A4%A9/%E8%A1%A8%E5%8D%95%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2.html"+"?"+url);</span></div><div class="line">        <span class="built_in">window</span>.open(<span class="string">"表单跳转页面.html"</span>+<span class="string">"?"</span>+url);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/25/JQ请求方法/">展开全文 >></a>
         </p>
       
 
@@ -5549,11 +5753,11 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
+                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -5562,10 +5766,6 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JS练习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

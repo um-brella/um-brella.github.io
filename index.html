@@ -143,6 +143,54 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-大傻逼" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/02/大傻逼/">大傻逼</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/02/大傻逼/" class="archive-article-date">
+  	<time datetime="2017-07-02T09:52:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大傻逼大傻逼</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/02/大傻逼/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-百度糯米官网-swiper插件案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -754,204 +802,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/11/css3产品说明实例/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-less文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/11/less文件/">less文件</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/11/less文件/" class="archive-article-date">
-  	<time datetime="2017-06-11T11:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="less文件格式"><a href="#less文件格式" class="headerlink" title="less文件格式"></a>less文件格式</h2><p>less也是写样式的跟css一样都是实现样式的写法，只不过语法不一样，它涵盖了一些JS的思想</p>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ul>
-<li>在JS中var color=”red”;</li>
-<li>在less中变量前面加上@符号</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="variable">@color:</span><span class="number">#ff6700</span>;</div><div class="line"><span class="selector-class">.box1</span>&#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@color</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.box1</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#ff6700</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="以变量的名定义为变量"><a href="#以变量的名定义为变量" class="headerlink" title="以变量的名定义为变量"></a>以变量的名定义为变量</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="variable">@word:</span><span class="string">"I LOVE U"</span>;</div><div class="line"><span class="variable">@c:</span><span class="number">#ff6700</span>;</div><div class="line"><span class="variable">@var:</span><span class="string">"word"</span>;<span class="comment">//定义了一个变量var赋值为一个变量名word</span></div><div class="line"><span class="variable">@col:</span><span class="string">"c"</span>;<span class="comment">//定义了一个变量col赋值为一个变量名c</span></div><div class="line"><span class="selector-id">#p1</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="comment">//相当于content:@word;</span></div><div class="line">    <span class="attribute">content</span>: <span class="variable">@@var</span>;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@@col</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-id">#p1</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I LOVE U"</span>;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#ff6700</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="混合类"><a href="#混合类" class="headerlink" title="混合类"></a>混合类</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-class">.class1</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">20px</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid rosybrown;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box1</span>&#123;</div><div class="line">    <span class="selector-class">.class1</span>;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#0000ff</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.class1</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid rosybrown;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box1</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid rosybrown;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#0000ff</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="带参数混合"><a href="#带参数混合" class="headerlink" title="带参数混合"></a>带参数混合</h3><ul>
-<li>在less中可以像JS函数一样定义一个带参数的属性集合</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-class">.radius</span>(<span class="variable">@rad</span>)&#123;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="variable">@rad</span>;</div><div class="line">    <span class="attribute">-webkit-border-radius</span>: <span class="variable">@rad</span>;</div><div class="line">    <span class="attribute">-moz-border-radius</span>: <span class="variable">@rad</span>;</div><div class="line">    <span class="attribute">-ms-border-radius</span>:<span class="variable">@rad</span>;</div><div class="line">    <span class="attribute">-o-border-radius</span>:<span class="variable">@rad</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box1</span>&#123;</div><div class="line">    <span class="selector-class">.radius</span>(<span class="number">10px</span>);<span class="comment">//@rad=10px;</span></div><div class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#0000FF</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.box1</span> &#123;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">-ms-border-radius</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">-o-border-radius</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#0000FF</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="给参数赋默认值"><a href="#给参数赋默认值" class="headerlink" title="给参数赋默认值"></a>给参数赋默认值</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-class">.font</span>(<span class="variable">@size</span>:<span class="number">18px</span>)&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="variable">@size</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.menu</span> <span class="selector-tag">li</span>&#123;</div><div class="line">    <span class="selector-class">.font</span>();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//@arguments:包含了所有传进来的参数</span></div><div class="line"><span class="selector-class">.bor</span>(<span class="variable">@x</span>,<span class="variable">@y</span>,<span class="variable">@z</span>)&#123;</div><div class="line">    <span class="attribute">border</span>: <span class="variable">@arguments</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.wh</span>(<span class="variable">@w</span>:<span class="number">100px</span>,<span class="variable">@h</span>:<span class="number">30px</span>)&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">@w</span>;</div><div class="line">    <span class="attribute">height</span>:<span class="variable">@h</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.menu</span> <span class="selector-tag">li</span>&#123;</div><div class="line">    <span class="selector-class">.wh</span>(<span class="number">200px</span>);</div><div class="line">    <span class="selector-class">.bor</span>(<span class="number">3px</span>,solid,green);</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box-shadow</span>(<span class="variable">@x</span>:<span class="number">0</span>,<span class="variable">@y</span>:<span class="number">0</span>,<span class="variable">@blur</span>:<span class="number">4px</span>,<span class="variable">@color</span>:<span class="number">#ccc</span>)&#123;</div><div class="line">    <span class="attribute">box-shadow</span>: <span class="variable">@arguments</span>;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@color</span>;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="variable">@blur</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">span</span>&#123;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">    <span class="selector-class">.box-shadow</span>(<span class="number">5px</span>,<span class="number">5px</span>);</div><div class="line">    <span class="selector-class">.wh</span>(<span class="number">150px</span>,<span class="number">45px</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.menu</span> <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.menu</span> <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">3px</span> solid green;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">span</span> &#123;</div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">  <span class="attribute">box-shadow</span>: <span class="number">5px</span> <span class="number">5px</span> <span class="number">4px</span> <span class="number">#ccc</span>;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#ccc</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">150px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">45px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="匹配模式和引导表达式"><a href="#匹配模式和引导表达式" class="headerlink" title="匹配模式和引导表达式"></a>匹配模式和引导表达式</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-class">.min</span>(dark,<span class="variable">@color</span>)&#123;</div><div class="line">    <span class="attribute">color</span>:darken(<span class="variable">@color</span>,<span class="number">20%</span>);</div><div class="line">    <span class="comment">//将颜色加深20%</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.min</span>(light,<span class="variable">@color</span>)&#123;</div><div class="line">    <span class="attribute">color</span>: lighten(<span class="variable">@color</span>,<span class="number">20%</span>);</div><div class="line">    <span class="comment">//将颜色变浅20%</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.min</span>(<span class="variable">@_</span>,<span class="variable">@color</span>)&#123;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">&#125;</div><div class="line"><span class="variable">@switch1:</span>dark;</div><div class="line"><span class="variable">@switch2:</span>light;</div><div class="line"></div><div class="line"><span class="selector-tag">span</span>&#123;</div><div class="line">    <span class="comment">//.min(@switch1,#ddd);</span></div><div class="line">    <span class="comment">//.min(drak,#ddd);@color:#ddd;</span></div><div class="line">    <span class="comment">//.min(@switch2,#ddd);</span></div><div class="line">    <span class="comment">//@_，接受任意值，你传什么值他都会执行</span></div><div class="line">    <span class="selector-class">.min</span>(<span class="variable">@word</span>,<span class="number">#ccc</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-tag">span</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#aaaaaa</span>;</div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>color函数</p>
-<ol>
-<li>lighten(@color,10%);<ul>
-<li>意思是：return a color which is 10% lighter than @color; 变亮</li>
-</ul>
-</li>
-<li>darken(@color,10%);<ul>
-<li>意思是：return a color which is 10% darker than @color; 变暗</li>
-</ul>
-</li>
-<li>statuate(@color,10%);<ul>
-<li>意思是：return a color which is 10% statuated than @color; 增加饱和度</li>
-</ul>
-</li>
-<li>destatuste(@color,10%); <ul>
-<li>减少饱和度，褪色</li>
-</ul>
-</li>
-<li>fadein(@color,10%);<ul>
-<li>增加颜色的透明度</li>
-</ul>
-</li>
-<li>fadeout(@color,10%);<ul>
-<li>降低颜色的透明度</li>
-</ul>
-</li>
-<li>fade(@color, 50%); <ul>
-<li>设定透明度为 50%</li>
-</ul>
-</li>
-<li>spin(@color,10)<ul>
-<li>色相值增加 10</li>
-</ul>
-</li>
-<li>spin(@color,-10)<ul>
-<li>色相值减小 10</li>
-</ul>
-</li>
-<li>mix(@color1,@color2); <ul>
-<li>混合两种颜色</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>提取颜色信息</p>
-<ul>
-<li>hue(@color)：返回当前颜色的色调</li>
-<li>staturation(@color)：返回当前颜色的饱和度</li>
-<li>lightness(@color)：返回当前颜色的亮度</li>
-<li>@new: hsl(hue(@old), 45%, 90%);<br>@new 将使用 @old 的 色相值，以及它自己的饱和度与亮度。</li>
-</ul>
-</li>
-</ul>
-<h3 id="when函数"><a href="#when函数" class="headerlink" title="when函数"></a>when函数</h3><blockquote>
-<p>注意：<br> 在less中比较运算：<br> <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>=</code></p>
-</blockquote>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-class">.wh</span>(<span class="variable">@w</span>:<span class="number">100px</span>,<span class="variable">@h</span>:<span class="number">50px</span>)&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">@w</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="variable">@h</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//when</span></div><div class="line"><span class="selector-class">.mixin</span>(<span class="variable">@a</span>) <span class="keyword">when</span>(lightness(<span class="variable">@a</span>)&gt;=<span class="number">50%</span>)&#123;</div><div class="line">    <span class="attribute">background-color</span>: black;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.mixin</span>(<span class="variable">@a</span>) <span class="keyword">when</span>(lightness(<span class="variable">@a</span>)&lt;=<span class="number">50%</span>)&#123;</div><div class="line">    <span class="attribute">background-color</span>: whitesmoke;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box1</span>&#123;</div><div class="line">    <span class="selector-class">.wh</span>();</div><div class="line">    <span class="selector-class">.mixin</span>(<span class="number">#ddd</span>);</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.mn</span>(<span class="variable">@w</span>,<span class="variable">@h</span>) <span class="keyword">when</span>(<span class="variable">@w</span>&gt;<span class="variable">@h</span>)&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">@w</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="variable">@h</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.mn</span>(<span class="variable">@w</span>,<span class="variable">@h</span>) <span class="keyword">when</span>(<span class="variable">@w</span>&lt;=<span class="variable">@h</span>)&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">@h</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="variable">@w</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box1</span>&#123;</div><div class="line">    <span class="selector-class">.mn</span>(<span class="number">100px</span>,<span class="number">200px</span>);</div><div class="line">    <span class="selector-class">.mn</span>(<span class="number">200px</span>,<span class="number">100px</span>);</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.m</span>(<span class="variable">@x</span>) <span class="keyword">when</span>(<span class="variable">@x</span>=red)&#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@x</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.m</span>(<span class="variable">@x</span>) <span class="keyword">when</span>(<span class="variable">@x</span>=green)&#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@x</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">p</span>&#123;</div><div class="line">    <span class="comment">//.m(green);</span></div><div class="line">    <span class="selector-class">.m</span>(whitesmoke);<span class="comment">//没有满足条件根本不会执行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.box1</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">  <span class="attribute">background-color</span>: black;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box1</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>给予值类型的判断进行匹配，可以使用JS函数判断<ul>
-<li>isnumber</li>
-<li>iscolor</li>
-<li>isstring</li>
-<li>isurl</li>
-<li>iskeyword</li>
-</ul>
-</li>
-<li>判断单位<ul>
-<li>ispixel<ul>
-<li>判断单位是不是px</li>
-</ul>
-</li>
-<li>ispercentage<ul>
-<li>判断单位是不是pt</li>
-</ul>
-</li>
-<li>isem<ul>
-<li>判断单位是不是em</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-class">.n</span>(<span class="variable">@a</span>)  <span class="keyword">when</span>(iscolor(<span class="variable">@a</span>))&#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@a</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.n1</span>(<span class="variable">@b</span>)  <span class="keyword">when</span>(isstring(<span class="variable">@b</span>))&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="variable">@b</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.n2</span>(<span class="variable">@c</span>)  <span class="keyword">when</span>(ispixel(<span class="variable">@c</span>))&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">@c</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box2</span> <span class="selector-tag">span</span>&#123;</div><div class="line">    <span class="selector-class">.n</span>(red);</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box2</span><span class="selector-pseudo">:before</span>&#123;</div><div class="line">    <span class="selector-class">.n1</span>(<span class="string">"哈哈哈哈"</span>);</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box2</span>&#123;</div><div class="line">    <span class="selector-class">.n2</span>(<span class="number">100px</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.box2</span> <span class="selector-tag">span</span> &#123;</div><div class="line">  <span class="attribute">color</span>: red;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box2</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"哈哈哈哈"</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box2</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="嵌套规则"><a href="#嵌套规则" class="headerlink" title="嵌套规则"></a>嵌套规则</h3><ul>
-<li>直接嵌套表示的是后代关系<ul>
-<li>如果想表达的是当前选择器，加一个&amp;来表示（一般都是伪元素伪类用的比较多）</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-class">.wh</span>(<span class="variable">@w</span>:<span class="number">100px</span>,<span class="variable">@h</span>:<span class="number">100px</span>)&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">@w</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="variable">@h</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">div</span>&#123;</div><div class="line">    <span class="selector-class">.wh</span>();</div><div class="line">    <span class="selector-tag">p</span>&#123;</div><div class="line">       <span class="selector-class">.wh</span>(<span class="number">100px</span>,<span class="number">20px</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">    <span class="selector-class">.wh</span>();</div><div class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span>&#123;</div><div class="line">        <span class="attribute">background-color</span>: wheat;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">span</span>&#123;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">    <span class="selector-class">.wh</span>(<span class="number">50px</span>,<span class="number">20px</span>);</div><div class="line">    <span class="selector-tag">&amp;</span><span class="selector-id">#span1</span>&#123;</div><div class="line">        <span class="selector-class">.wh</span>();</div><div class="line">        <span class="attribute">background-color</span>: <span class="number">#87cEEB</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">  <span class="attribute">background-color</span>: wheat;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">span</span> &#123;</div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">span</span><span class="selector-id">#span1</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#87cEEB</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>计算功能：任何颜色，变量都可以参与运算</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="variable">@base:</span><span class="number">5%</span>;</div><div class="line"><span class="variable">@filter:</span><span class="variable">@base</span>*<span class="number">2</span>;<span class="comment">//10%</span></div><div class="line"><span class="variable">@other:</span><span class="variable">@base</span>*<span class="number">4</span>+<span class="variable">@filter</span>;<span class="comment">//30%</span></div><div class="line"></div><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#FF0000</span>;</div><div class="line">    <span class="attribute">background-color</span>: <span class="variable">@filter</span>+<span class="number">#111</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100%</span>/<span class="number">2</span>+<span class="variable">@other</span>;</div><div class="line">&#125;</div><div class="line"><span class="variable">@var :</span><span class="number">10px</span>+<span class="number">5</span>;</div><div class="line"><span class="selector-id">#box1</span>&#123;</div><div class="line">    <span class="attribute">width</span>: (<span class="variable">@var</span> + <span class="number">20</span>)*<span class="number">2</span>;</div><div class="line">    <span class="attribute">height</span>: (<span class="variable">@var</span> - <span class="number">5</span>)*<span class="number">3</span>;</div><div class="line">    <span class="selector-tag">p</span>&#123;</div><div class="line">        <span class="attribute">height</span>: (<span class="variable">@var</span> + <span class="number">5</span>)/<span class="number">2</span>;</div><div class="line">        <span class="attribute">background-color</span>: <span class="number">#101010</span>+<span class="number">#000111</span>;</div><div class="line">        <span class="attribute">border</span>: <span class="variable">@var</span> - <span class="number">5</span> solid <span class="number">#0000ff</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#FF0000</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#1b1b1b</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">80%</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#box1</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">70px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#box1</span> <span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#101121</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">10px</span> solid <span class="number">#0000ff</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>less也支持部分Math函数<ul>
-<li>round(1.67) -&gt;2</li>
-<li>ceil(2.1) -&gt;3</li>
-<li>floor(2.9) -&gt;2</li>
-<li>percentage(0.5) -&gt;50%转为百分比的函数</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-id">#s</span>&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">    <span class="attribute">border-radius</span>: percentage(<span class="number">0.5</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-id">#s</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>命名空间</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="selector-id">#box1</span>&#123;</div><div class="line">    <span class="selector-class">.p1</span>&#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</div><div class="line">        <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span>&#123;</div><div class="line">            <span class="attribute">color</span>: <span class="number">#FF6700</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.p2</span>&#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#ccc</span>;</div><div class="line">    <span class="selector-id">#box1</span>&gt;<span class="selector-class">.p1</span>;<span class="comment">//将#box1下面的.p1样式复制过来</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-id">#box1</span> <span class="selector-class">.p1</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#box1</span> <span class="selector-class">.p1</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#FF6700</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.p2</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#ccc</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.p2</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#FF6700</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>可以使用一些简单的JS语句</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="variable">@w:</span> <span class="built_in">`"hello world".toUpperCase()+"!"`</span>;</div><div class="line"><span class="selector-class">.p2</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="variable">@w</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.p2</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"HELLO WORLD!"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CSS3教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/11/less文件/">展开全文 >></a>
         </p>
       
 
@@ -5409,11 +5259,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
+                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -5422,10 +5272,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JS练习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

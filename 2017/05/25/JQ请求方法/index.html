@@ -180,7 +180,7 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是get文件夹下的11.html文档</span></div><div class="line">&lt;body&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li&gt;唐僧&lt;/li&gt;</div><div class="line">    &lt;li&gt;猪八戒&lt;/li&gt;</div><div class="line">    &lt;li&gt;孙悟空&lt;/li&gt;</div><div class="line">    &lt;li&gt;沙和尚&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;<span class="regexp">/body&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是get文件夹下的11.html文档</span></div><div class="line">&lt;body&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>唐僧<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>猪八戒<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>孙悟空<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>沙和尚<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">&lt;<span class="regexp">/body&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#get"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    $(<span class="string">"#box"</span>).load(<span class="string">"get/11.html"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">responseText,textStatus,XHR</span>) </span>&#123;</div><div class="line">        <span class="comment">/*</span></div><div class="line">        console.log(responseText);//11.html的所有数据内容</div><div class="line">        console.log(textStatus);//success或error</div><div class="line">        console.log(XHR);//请求对象具体内容</div><div class="line">        */</div><div class="line">        <span class="comment">//将传回来的数据根据`body`标签进行拆分，只需要`ul`标签內的内容</span></div><div class="line">        <span class="keyword">var</span> str=responseText.split(<span class="string">"&lt;body&gt;"</span>)[<span class="number">1</span>].split(<span class="string">"&lt;/body&gt;"</span>)[<span class="number">0</span>];</div><div class="line">        <span class="comment">//将`ul`标签內的内容放到$("#get")下</span></div><div class="line">        $(<span class="keyword">this</span>).html(str);</div><div class="line">    &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <hr>
 <h2 id="get"><a href="#get" class="headerlink" title="$.get"></a><code>$.get</code></h2><p>语法：<code>$.get(url,传给后台的数据,回调函数)</code></p>
@@ -4756,11 +4756,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
+                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4769,10 +4769,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JS练习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
