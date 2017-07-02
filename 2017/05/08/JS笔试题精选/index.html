@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://qiminghaonan.com">
   <title>JS笔试题精选 | um-brella的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一题题目描述: 找出元素 item 在给定数组 arr 中的位置   输出描述: &amp;nbsp;如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1输入例子: &amp;nbsp;indexOf([ 1, 2, 3, 4 ], 3)输出例子: &amp;nbsp;2 答案:12345678910111213function indexOf(arr, item) &amp;#123;	if(Array.pr">
+  <meta name="description" content="第一题题目描述: 找出元素 item 在给定数组 arr 中的位置   输出描述: &amp;nbsp;如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1输入例子: &amp;nbsp;indexOf([ 1, 2, 3, 4 ], 3)输出例子: &amp;nbsp;2">
 <meta name="keywords" content="JS练习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS笔试题精选">
 <meta property="og:url" content="http://qiminghaonan.com/2017/05/08/JS笔试题精选/index.html">
 <meta property="og:site_name" content="um-brella的博客">
-<meta property="og:description" content="第一题题目描述: 找出元素 item 在给定数组 arr 中的位置   输出描述: &amp;nbsp;如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1输入例子: &amp;nbsp;indexOf([ 1, 2, 3, 4 ], 3)输出例子: &amp;nbsp;2 答案:12345678910111213function indexOf(arr, item) &amp;#123;	if(Array.pr">
-<meta property="og:updated_time" content="2017-05-08T02:36:17.000Z">
+<meta property="og:description" content="第一题题目描述: 找出元素 item 在给定数组 arr 中的位置   输出描述: &amp;nbsp;如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1输入例子: &amp;nbsp;indexOf([ 1, 2, 3, 4 ], 3)输出例子: &amp;nbsp;2">
+<meta property="og:updated_time" content="2017-07-02T11:37:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS笔试题精选">
-<meta name="twitter:description" content="第一题题目描述: 找出元素 item 在给定数组 arr 中的位置   输出描述: &amp;nbsp;如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1输入例子: &amp;nbsp;indexOf([ 1, 2, 3, 4 ], 3)输出例子: &amp;nbsp;2 答案:12345678910111213function indexOf(arr, item) &amp;#123;	if(Array.pr">
+<meta name="twitter:description" content="第一题题目描述: 找出元素 item 在给定数组 arr 中的位置   输出描述: &amp;nbsp;如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1输入例子: &amp;nbsp;indexOf([ 1, 2, 3, 4 ], 3)输出例子: &amp;nbsp;2">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -171,6 +171,7 @@
 <li>找出元素 item 在给定数组 arr 中的位置 </li>
 </ul>
 <p><strong>输出描述:</strong> &nbsp;如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1<br><strong>输入例子:</strong> &nbsp;indexOf([ 1, 2, 3, 4 ], 3)<br><strong>输出例子:</strong> &nbsp;2</p>
+<a id="more"></a>    
 <h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span>(<span class="built_in">Array</span>.prototype.indexOf)&#123;<span class="comment">//判断浏览器是否兼容indexOf方法</span></div><div class="line">		<span class="keyword">return</span> arr.indexOf(item);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;ary.lenth;i++)&#123;</div><div class="line">			<span class="keyword">if</span>(ary[i]===item)&#123;</div><div class="line">				<span class="keyword">return</span> i;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
 <h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述:"></a>题目描述:</h4><ul>

@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://qiminghaonan.com/2017/05/24/JQ中的事件/index.html">
 <meta property="og:site_name" content="um-brella的博客">
 <meta property="og:description" content="onload事件 DOM0级事件，window.onload=function () {}只能写一次 DOM2级事件，实现多次绑定，同一事件能输出两次  123456window.addEventListener(&quot;load&quot;,function () &amp;#123;    console.log(&quot;页面加载完成1&quot;);&amp;#125;,false);window.addEventListener(&quot;lo">
-<meta property="og:updated_time" content="2017-05-25T01:44:40.000Z">
+<meta property="og:updated_time" content="2017-07-02T11:37:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JQ中的事件">
 <meta name="twitter:description" content="onload事件 DOM0级事件，window.onload=function () {}只能写一次 DOM2级事件，实现多次绑定，同一事件能输出两次  123456window.addEventListener(&quot;load&quot;,function () &amp;#123;    console.log(&quot;页面加载完成1&quot;);&amp;#125;,false);window.addEventListener(&quot;lo">
@@ -172,6 +172,7 @@
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"load"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"页面加载完成1"</span>);</div><div class="line">&#125;,<span class="literal">false</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"load"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"页面加载完成2"</span>);</div><div class="line">&#125;,<span class="literal">false</span>);</div></pre></td></tr></table></figure>
 </li>
 </ol>
+<a id="more"></a>    
 <h4 id="onload加载顺序"><a href="#onload加载顺序" class="headerlink" title="onload加载顺序"></a>onload加载顺序</h4><ul>
 <li>当页面上所有东西都加载完成之后再执行代码</li>
 </ul>

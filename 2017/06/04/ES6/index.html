@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://qiminghaonan.com">
   <title>ES6 | um-brella的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="定义变量let 没有变量的提声（没有预解释）  全局作用域 123console.log(a);// a is not definedlet a=0;console.log(a);//0     *  私有作用域  12345function fn() &amp;#123;       console.log(a);// a is not defined       let a   &amp;#125;   fn">
+  <meta name="description" content="定义变量let 没有变量的提声（没有预解释）  全局作用域 123console.log(a);// a is not definedlet a=0;console.log(a);//0  私有作用域 12345function fn() &amp;#123;       console.log(a);// a is not defined       let a   &amp;#125;   fn();">
 <meta name="keywords" content="JS教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6">
 <meta property="og:url" content="http://qiminghaonan.com/2017/06/04/ES6/index.html">
 <meta property="og:site_name" content="um-brella的博客">
-<meta property="og:description" content="定义变量let 没有变量的提声（没有预解释）  全局作用域 123console.log(a);// a is not definedlet a=0;console.log(a);//0     *  私有作用域  12345function fn() &amp;#123;       console.log(a);// a is not defined       let a   &amp;#125;   fn">
-<meta property="og:updated_time" content="2017-06-04T11:57:09.000Z">
+<meta property="og:description" content="定义变量let 没有变量的提声（没有预解释）  全局作用域 123console.log(a);// a is not definedlet a=0;console.log(a);//0  私有作用域 12345function fn() &amp;#123;       console.log(a);// a is not defined       let a   &amp;#125;   fn();">
+<meta property="og:updated_time" content="2017-07-02T11:36:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6">
-<meta name="twitter:description" content="定义变量let 没有变量的提声（没有预解释）  全局作用域 123console.log(a);// a is not definedlet a=0;console.log(a);//0     *  私有作用域  12345function fn() &amp;#123;       console.log(a);// a is not defined       let a   &amp;#125;   fn">
+<meta name="twitter:description" content="定义变量let 没有变量的提声（没有预解释）  全局作用域 123console.log(a);// a is not definedlet a=0;console.log(a);//0  私有作用域 12345function fn() &amp;#123;       console.log(a);// a is not defined       let a   &amp;#125;   fn();">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -172,13 +172,14 @@
 <li><p>全局作用域</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a);<span class="comment">// a is not defined</span></div><div class="line"><span class="keyword">let</span> a=<span class="number">0</span>;</div><div class="line"><span class="built_in">console</span>.log(a);<span class="comment">//0</span></div></pre></td></tr></table></figure>
 </li>
+<li><p>私有作用域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(a);<span class="comment">// a is not defined</span></div><div class="line">       <span class="keyword">let</span> a</div><div class="line">   &#125;</div><div class="line">   fn();</div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ul>
-<pre><code>*  私有作用域
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(a);<span class="comment">// a is not defined</span></div><div class="line">       <span class="keyword">let</span> a</div><div class="line">   &#125;</div><div class="line">   fn();</div></pre></td></tr></table></figure>
-</code></pre><ul>
+<a id="more"></a>    
+<ul>
 <li><p>不能重复定义</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a=<span class="number">1</span>;</div><div class="line"><span class="keyword">let</span> a=<span class="number">2</span>;<span class="comment">//Identifier 'a' has already been declared a已经被定义过</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;<span class="comment">//Identifier 'a' has already been declared a已经被定义过</span></div><div class="line"><span class="comment">//私有变量和形参不能相同</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> n=a;<span class="comment">//Identifier 'n' has already been declared</span></div><div class="line">&#125;</div><div class="line">fn(<span class="number">1</span>)</div></pre></td></tr></table></figure>
 </li>

@@ -164,7 +164,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="括号表达式"><a href="#括号表达式" class="headerlink" title="括号表达式"></a>括号表达式</h2><ol>
-<li>保证一些操作语法符合浏览器的识别<ul>
+<li><p>保证一些操作语法符合浏览器的识别</p>
+<ul>
 <li>自执行函数<code>(function(){})()</code></li>
 <li>基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如<code>1.toString</code>是错误的，应该写成<ul>
 <li><code>.toString</code>或者<code>(1).toString</code></li>
@@ -172,42 +173,10 @@
 </ul>
 </li>
 <li>引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者<code>({}).属性名({a:1,b:2}).a</code></li>
-<li>注意在用eval遇到{}表示对象的时候用小括号包起来</li>
-</ul>
-</li>
-<li>计算的时候优先级最高</li>
-<li>正则中()表示小分组，优先级也高</li>
-<li>本身也是有计算的效果<ul>
-<li>一个括号中如果包含多项，只会把最后一项的值（对于基本数据类型是值类型的，对于引用数据类型是地址值）copy过来，然后进行后续的处理</li>
-<li>最后一项是个函数，那么函数执行的时候里面的this是window</li>
-<li>注意一点：如果括号中只有一项，和不加括号没有区别</li>
-</ul>
-</li>
-</ol>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
-<li><p>继承：子类继承父类的属性和方法</p>
-<ul>
-<li><p>原型继承:子类（F2）的原型指向父类（F1）的一个实例</p>
-<ul>
-<li>子类（F2）的原型上就会有通过父类（F1）得来的私有属性，还可以通过F2.prototype.<strong>proto</strong>得到F1原型上的公有属性</li>
-<li>在创建F2的实例的时候，就可以通过<strong>proto</strong>一级一级向上寻找到F1的原型</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x=<span class="number">100</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F2</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">F1.prototype.getX=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;;</div><div class="line">F2.prototype=<span class="keyword">new</span> F1();<span class="comment">//(原型继承的核心)</span></div><div class="line"><span class="comment">//F2.prototype是F1的实例</span></div><div class="line"><span class="comment">//F2.prototype.__proto__--&gt;F1.prototype</span></div><div class="line">F2.prototype.getX();</div><div class="line"><span class="keyword">var</span> f2=<span class="keyword">new</span> F2;</div><div class="line">f2.getX();</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>* call继承
-    * 判断对象中的属性是不是私有的一个方法，用hasOwnProperty(），对象.hasOwnProperty(&quot;属性名&quot;)
-    * 先用in判断一下有没有这个属性，没有就算了，有的话再用hasOwnProperty这个方法判断是不是私有的
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x=<span class="number">100</span>;</div><div class="line">    <span class="keyword">this</span>.y=<span class="number">200</span>;</div><div class="line">&#125;</div><div class="line">F1.prototype.getX=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//this是F2的实例，f2</span></div><div class="line">    <span class="comment">//F1() -&gt;this==window，想办法把F1执行时候里面的this变成f2</span></div><div class="line">    F1.call(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> f2=<span class="keyword">new</span> F2;</div><div class="line"><span class="built_in">console</span>.log(f2.x);</div></pre></td></tr></table></figure>
-
-
-* 冒充对象继承
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//for in</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x=<span class="number">100</span>;</div><div class="line">&#125;</div><div class="line">F1.prototype.getX=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//this -&gt;f2</span></div><div class="line">    <span class="keyword">var</span> f1=<span class="keyword">new</span> F1();</div><div class="line">    <span class="comment">//f1&#123;私有的x:100,公有的getX:function&#125;</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> f1)&#123;</div><div class="line">        <span class="keyword">if</span>(f1.hasOwnProperty(key))&#123;<span class="comment">//把他的私有属性放在this中</span></div><div class="line">            <span class="keyword">this</span>[key]=f1[key];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">this</span>.__proto__[key]=f1[key];<span class="comment">//把他的公有属性放在F2的原型中</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> f2=<span class="keyword">new</span> F2;<span class="comment">//&#123;x:100,getX:function&#125;</span></div></pre></td></tr></table></figure>
-</code></pre>
+<li>注意在用eval遇到{}表示对象的时候用小括号包起来
+        
+          <a class="article-more-a" href="/2017/05/26/括号表达式与继承/#more">more >></a>
+        
       
 
       
@@ -275,242 +244,10 @@
 <li><p>语法：<br>  <code>var reg=/didi/g;</code></p>
 <ol>
 <li>写在／／中间的部分都是元字符 必须要有</li>
-<li>写在／／后面的是修饰符，只有三种：g(全局匹配) i(忽略大小写) m(换行匹配)</li>
-</ol>
-</li>
-<li><p>具有特殊意义的元字符</p>
-<ul>
-<li><p><code>\</code>:转义符 把具有特殊意义的字符转为本来的意思</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">'I\'m a person'</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\\d/</span>;</div><div class="line"><span class="keyword">var</span> s1=<span class="string">"\\d"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(s1));</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>^</code>:以…开头</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^1/</span>;<span class="comment">//匹配以1开头的字符串</span></div><div class="line"><span class="keyword">var</span> s1=<span class="string">"123"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(s1));</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>$</code>:以…结尾</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/12$/</span>;<span class="comment">//匹配以2结尾，前面要有1的字符串</span></div><div class="line"><span class="keyword">var</span> s1=<span class="string">"1312"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(s1));</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果是规定了开头和结尾，中间内容就固定了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^6abc7$/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"67"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"6abc7"</span>));</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>\d</code>: <br>0-9中的任意一个</p>
-</li>
-<li><code>\D</code>: <br>除了\d以外的任意一个</li>
-<li><code>\w</code>: <br>0-9，a-z，A-Z，_ 一共63个，这63个中的任意一个</li>
-<li><code>\W</code>: <br>表示除了\w 以外的任意一个</li>
-<li><code>\n</code>: <br>匹配一个换行符</li>
-<li><code>\s</code>: <br>空白符 （常用来表示空格、制表符、换页符）</li>
-<li><code>\S</code>: <br>匹配一个非空白符</li>
-<li><code>\b</code>: <br>匹配一个边界</li>
-<li><p><code>.</code>: <br>查找单个字符，除了换行和行结束符</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\ba/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"ab"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"bbb a"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"bbba"</span>));</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>* `\B`: &lt;br&gt;匹配一个非边界
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="regexp">/\Bb/</span>.test(<span class="string">"b"</span>));</div><div class="line"><span class="built_in">console</span>.log(<span class="regexp">/\Bb/</span>.test(<span class="string">"abb"</span>));</div></pre></td></tr></table></figure>
-</code></pre><hr>
-<h2 id="正则创建方式"><a href="#正则创建方式" class="headerlink" title="正则创建方式"></a>正则创建方式</h2><ul>
-<li>字面量创建</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d/</span>;<span class="comment">//字面量创建方式</span></div></pre></td></tr></table></figure>
-<ul>
-<li>构造函数创建</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg1=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\d"</span>);<span class="comment">//构造函数创建方式，遇到／变成／／</span></div><div class="line"><span class="comment">//构造函数方式创建可以实现变量的拼接</span></div></pre></td></tr></table></figure>
-<p>例如：如下两种创建方式效果相同</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num=<span class="number">2017</span>;</div><div class="line"><span class="keyword">var</span> str=<span class="string">"zhufeng*2017*peixun"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[a-z]+\*\d&#123;4&#125;\*[a-z]+$/</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"^[a-z]+\\*"</span>+num+<span class="string">"\\*[a-z]+$"</span>);</div></pre></td></tr></table></figure>
-<ul>
-<li>匹配小数 </li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(\d|[1-9]\d+)\.\d+$/</span>;</div></pre></td></tr></table></figure>
-<ul>
-<li>匹配有效数字</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^-?(\d|[1-9]\d+)(\.\d)?$/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"1.3"</span>));</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="正则的捕获"><a href="#正则的捕获" class="headerlink" title="正则的捕获"></a>正则的捕获</h2><ul>
-<li><p>exec捕获，两个阶段</p>
-<ol>
-<li>匹配，判断字符串是否匹配正则，不匹配返回null</li>
-<li><p>捕获，把匹配字符串中的内容捕获出来，返回一个数组</p>
-<ul>
-<li>[第一项：捕获的内容，index：捕获的内容首字符在原字符串中的索引，input：原字符串]</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"abcdefg"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));<span class="comment">//null</span></div><div class="line"><span class="keyword">var</span> str=<span class="string">"2017年5yue4hao"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>正则的懒惰型。捕获的时候只捕获第一次匹配的内容，正则中有一个属性叫lastIndex表示开始查找的索引</p>
-<ul>
-<li><p>解决懒惰型，就是加上修饰符g<code>var reg=/\d/g;</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ary=[];</div><div class="line"><span class="keyword">var</span> re=reg.exec(str);</div><div class="line"><span class="keyword">while</span> (re)&#123;</div><div class="line">    ary.push(re[<span class="number">0</span>]);</div><div class="line">    re=reg.exec(str)</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(ary);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>* 字符串方法解决
-    * match 他是字符串的方法   str.match(正则表达式)
-
-    &gt; 注意:&lt;br&gt;1.用match的时候正则表达式必须加上修饰符g，否则就跟exec的结果一样了&lt;br&gt;2.加上g后的match 返回值也是一个数组，但是没有index和input属性
-
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"kafja934nkfaf83"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d/</span>;</div><div class="line"><span class="built_in">console</span>.log(str.match(reg));</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d/g</span>;</div><div class="line"><span class="built_in">console</span>.log(str.match(reg));</div></pre></td></tr></table></figure>
-</code></pre><ul>
-<li>小括号的问题<ul>
-<li>有分组的时候，一个小括号代表一个分组</li>
-<li>exec:返回值是一个数组<ul>
-<li>第一项：大正则捕获的内容</li>
-<li>第二项：第一个分组捕获的内容</li>
-<li>…..</li>
-</ul>
-</li>
-<li>index：大正则捕获的内容的首字符的索引</li>
-<li>input：原字符串</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="正则的贪婪性"><a href="#正则的贪婪性" class="headerlink" title="正则的贪婪性"></a>正则的贪婪性</h2><ul>
-<li><p>贪婪性<br><br>虽然只捕获一次，但是把这次满足条件的全都捕获出来</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d+/</span>;</div><div class="line"><span class="keyword">var</span> str=<span class="string">"women2017年第4期kao100fenmeiyong"</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div></pre></td></tr></table></figure>
-</li>
-<li><p>如何解决贪婪性<br><br>在量词元字符后加上？号</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d+?/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div></pre></td></tr></table></figure>
-</li>
-<li><p>关于？的问题<br><br>?: 加在小括号里面前面表示只匹配不捕获</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"js[2016]css[2017]html[2018]"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/[a-z]+(?:\[\d&#123;4&#125;\])/</span>;</div><div class="line"><span class="comment">//因为?:表示不捕获，所以\1就没有代表的内容</span></div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="分组捕获"><a href="#分组捕获" class="headerlink" title="分组捕获"></a>分组捕获</h2><ul>
-<li><p>exec返回值是一个数组</p>
-<ol>
-<li>第一项：大正则捕获的内容</li>
-<li>第二项：第一个分组捕获的内容</li>
-<li>第三项：第二个分组捕获的内容<br>…..</li>
-<li>index：第一项中大正则捕获内容首字符的索引</li>
-<li><p>input：原字符串</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"html5css3es6"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/([a-z]+)(\d)/g</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.exec(str));</div><div class="line"><span class="keyword">var</span> a=<span class="string">""</span>;</div><div class="line">   <span class="keyword">var</span> re=reg.exec(str);</div><div class="line">   <span class="keyword">while</span> (re)&#123;</div><div class="line">       a+=re[<span class="number">1</span>]+<span class="string">"版本是"</span>+re[<span class="number">2</span>]+<span class="string">"\n"</span>;</div><div class="line">       re=reg.exec(str);</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(a);</div><div class="line">   <span class="keyword">var</span> obj=&#123;&#125;;</div><div class="line">   <span class="keyword">var</span> re=reg.exec(str);</div><div class="line">   <span class="keyword">while</span> (re)&#123;</div><div class="line">       obj[re[<span class="number">1</span>]]=re[<span class="number">2</span>];</div><div class="line">       re=reg.exec(str);</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(obj);</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>match<br>有分组的时候正则加上g，捕获不到分组的内容</p>
-<ul>
-<li>不加修饰符g，跟exec结果一样，只能捕获一次</li>
-<li>总结一句：如果有分组，想要获取分组的内容只能用exec了</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="字符串几个重要方法"><a href="#字符串几个重要方法" class="headerlink" title="字符串几个重要方法"></a>字符串几个重要方法</h2><ul>
-<li><p>search()<br>返回值是首字母的索引，没有返回-1</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\*\d+/g</span>;</div><div class="line"><span class="keyword">var</span> str=<span class="string">"zhufeng*2017*peixunhtml5"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.search(reg));</div></pre></td></tr></table></figure>
-</li>
-<li><p>split（正则）<br>按照正则匹配的字符进行拆分为数组</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">'https://www.baidu.com/s?wd=a&amp;rsv_spt=1&amp;rsv_iqid=0x88dc909800021c57&amp;issp=1&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=2&amp;ie=utf-8&amp;rqlang=cn&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;oq=a&amp;rsv_t=3eaan%2BBwTztxTocuaOWsst22qcDp9XJG488qbSzo%2BZpNC5b2mGTelGcahSJZShPjBPAI&amp;rsv_pq=f42b8d010001ef23'</span>;</div><div class="line">s=<span class="built_in">window</span>.decodeURI(s);</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\?|&amp;/g</span>;</div><div class="line"><span class="built_in">console</span>.log(s.split(reg));</div><div class="line"><span class="keyword">var</span> ary=s.split(reg);</div><div class="line">ary.shift();</div><div class="line"><span class="keyword">var</span> obj=&#123;&#125;;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;ary.length;i++)&#123;</div><div class="line">    <span class="keyword">var</span> a=ary[i].split(<span class="string">"="</span>);</div><div class="line">    obj[a[<span class="number">0</span>]]=a[<span class="number">1</span>];</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(obj);</div></pre></td></tr></table></figure>
-</li>
-<li><p>replace()<br>使用正则加上修饰g，就可以全部换完了</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">"   s1 s2   a1 v1"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\s+/g</span>;</div><div class="line">s=s.replace(reg,<span class="string">" "</span>);</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\s+|\s+$/g</span>;<span class="comment">//匹配首尾有空格</span></div><div class="line">s=s.replace(reg,<span class="string">""</span>);</div><div class="line"><span class="built_in">console</span>.log(s);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>4.replace(正则，function(){})</p>
-<ul>
-<li>replace中的第二个参数可以传一个函数，替换一次执行一次，每一次执行都会默认给它传参数        <ul>
-<li>第一个参数：arguments[0]：大正则匹配的内容</li>
-<li>第二个参数：arguments[1]：第一个分组匹配的内容</li>
-<li>第三个参数：arguments[2]：第二个分组匹配的内容<br>…….</li>
-</ul>
-</li>
-<li>第一个参数的索引</li>
-<li>原字符串</li>
-<li><p>return什么就替换什么</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"html12000js14000node6000"</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/([a-z]+)(\d+)/g</span>;</div><div class="line">str=str.replace(reg,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//console.log(arguments);</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">arguments</span>[<span class="number">1</span>]+<span class="string">"学费是:"</span>+<span class="built_in">arguments</span>[<span class="number">2</span>]+<span class="string">"\n"</span>;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(str);</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">'https://www.baidu.com/s?wd=a&amp;rsv_spt=1&amp;rsv_iqid=0x88dc909800021c57&amp;issp=1&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=2&amp;ie=utf-8&amp;rqlang=cn&amp;tn=baiduhome_pg&amp;rsv_enter=0&amp;oq=a&amp;rsv_t=3eaan%2BBwTztxTocuaOWsst22qcDp9XJG488qbSzo2BZpNC5b2mGTelGcahSJZShPjBPAI&amp;rsv_pq=f42b8d010001ef23'</span>;</div><div class="line">s=<span class="built_in">window</span>.decodeURI(s);</div><div class="line">s=s.split(<span class="string">"?"</span>)[<span class="number">1</span>];</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/(\w+)=(\w+-*%*\w*)&amp;?/g</span>;</div><div class="line">s=s.replace(reg,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">arguments</span>[<span class="number">1</span>]+<span class="string">":'"</span>+<span class="built_in">arguments</span>[<span class="number">2</span>]+<span class="string">"',"</span>;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(s);</div><div class="line">s=s.substr(<span class="number">0</span>,s.length<span class="number">-1</span>);</div><div class="line"><span class="built_in">console</span>.log(s);</div><div class="line"><span class="keyword">var</span> obj=<span class="built_in">eval</span>(<span class="string">"(&#123;"</span>+s+<span class="string">"&#125;)"</span>);</div><div class="line"><span class="built_in">console</span>.log(obj);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="竖线和中括号问题"><a href="#竖线和中括号问题" class="headerlink" title="竖线和中括号问题"></a>竖线和中括号问题</h2><ul>
-<li><p><code>x|y</code>: <br>x或y中的一个</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(0|1)$/</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>[xy]</code>: </p>
-<ul>
-<li>x，y中选的一个</li>
-<li><code>[xyzmn]</code>:五个中选一个</li>
-</ul>
-</li>
-<li><code>[^xy]</code>:<br> 不是x，y就可以</li>
-<li><code>[a-z]</code>: <ul>
-<li>a到z中的一个</li>
-<li>表示a-z A-Z [a-zA-Z]</li>
-</ul>
-</li>
-<li><p>[]中除有特殊意义的字符（^ - \），其他的在[]里面都是普通元字符的意义；但是\还是可以转义</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="regexp">/^[2*]/</span>.test(<span class="string">'2'</span>));</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>|</code> 如果没有小括号的情况下，最后看<code>|</code></p>
-</li>
-<li><p>比较<code>x|y</code>和<code>[x|y]</code>的区别</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^10|89$/</span>;<span class="comment">//以10开头或者以89结尾</span></div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[10|89]$/</span>;<span class="comment">//以1，0，|，8，9中的一个</span></div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[10-89]$/</span>;<span class="comment">//1,0-8,9中的一个</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>()分组</p>
-<ul>
-<li>把大正则分成几个小正则</li>
-<li><p>作用：</p>
-<ul>
-<li><p>改变默认优先级，先运算括号里面的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(1[89]|[2-6]\d|7[0-5])$/</span>;</div><div class="line"><span class="comment">//18-75</span></div><div class="line">reg.test(<span class="string">"19"</span>);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>* 分组，表示一个小分组，`\1` 第一个分组匹配的内容
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\w(\w)\1\w$/</span>;</div><div class="line">reg.test(<span class="string">"good"</span>);</div></pre></td></tr></table></figure>
-</code></pre><ul>
-<li><p>身份证18位</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[1-8]\d&#123;16&#125;[\dX]$/</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[1-8]\d&#123;16&#125;(\d|X)$/</span>;</div><div class="line">reg.test(<span class="string">"03010819940424041X"</span>);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>姓名</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^[\u4e00-\u9fa5]&#123;2,4&#125;$/</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p>密码：数字，大小写字母，_，所有标点符号 6-16</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(\w|,|\.|\?|~|!|@|#|\$|%|\^|&amp;|\*|-|\+|'|"|:|;)$/</span>;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>邮箱</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^(\w|-|\+|\.)+@((\W|-)+\.)+([0-9a-zA-Z])+$/</span>;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="正则量词元字符"><a href="#正则量词元字符" class="headerlink" title="正则量词元字符"></a>正则量词元字符</h2><ul>
-<li><p><code>*</code>: 表示前面的元字符出现0-多次</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/\d\.*/</span>;</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"12"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"12."</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"12.1"</span>));</div><div class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"12.1.1.1"</span>));</div><div class="line"></div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\d\.*$/</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>+</code>:前面的元字符出现1到多次</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^.+\d/</span>;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p><code>?</code>:表示前面的元字符出现0或1次</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\d+\.?/</span>;</div><div class="line"><span class="keyword">var</span> reg=<span class="regexp">/^\*+\+?$/</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>{n}</code>: 前面的元字符就出现n次</p>
-</li>
-<li><code>{n,}</code>: 前面的元字符出现n到多次  </li>
-</ul>
-
+<li>写在／／后面的是修饰符，只有三种：g(全局匹配) i(忽略大小写) m(换行匹配)
+        
+          <a class="article-more-a" href="/2017/05/26/正则/#more">more >></a>
+        
       
 
       
@@ -589,97 +326,10 @@
 * call方法从第二个参数开始就是给前面的函数传的参数
 
 &gt; 注意：&lt;br&gt;1.当使用函数.call.call()，两个及两个以上的call你传的参数不是一个函数就会报错，因为只有函数的原型上才会有call这个方法&lt;br&gt;2.也就是，用两个及两个以上的call方法执行的时候，就相当于把你传进来的那个函数执行
-</code></pre><h2 id="apply方法"><a href="#apply方法" class="headerlink" title="apply方法"></a>apply方法</h2><ul>
-<li>apply 跟call方法意思和用法相同，区别为：<ul>
-<li>apply第一个参数也是改变this用的</li>
-<li>第二个参数是一个数组，这个数组是给前面的方法传参数的<ul>
-<li>将数组里面的每一项一个一个传给函数<br><code>fn.apply(undefined,[1,2]);</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="bind方法"><a href="#bind方法" class="headerlink" title="bind方法"></a>bind方法</h2><ul>
-<li>bind 在低版本不兼容，只改变函数this返回一个新的函数，原来函数不变，不让函数执行</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;;</div><div class="line">fn.bind(obj)();</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><ul>
-<li><code>&quot;use strict&quot;;</code> 严格模式<ol>
-<li>函数执行的时候，前面没有点’.’，this-&gt;undefined</li>
-<li>call()不传参数，this-&gt;undefined，传了个null，this-&gt;null，undefined，this-&gt;undefined</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h2 id="call将类数组转为数组"><a href="#call将类数组转为数组" class="headerlink" title="call将类数组转为数组"></a>call将类数组转为数组</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">    a=<span class="number">1</span>;</div><div class="line">    <span class="comment">//先执行try里面的代码，如果报错了就执行catch里面的代码</span></div><div class="line">    &#125;</div><div class="line"><span class="keyword">catch</span> (e)&#123;</div><div class="line">    <span class="comment">//e是一个对象，里面存着错误信息，存在e.message，这里面存着try里面的错误信息</span></div><div class="line">    <span class="built_in">console</span>.log(e.message);</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"错误信息"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//将类数组转成数组</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toArray1</span>(<span class="params">likeArray</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> ary=[];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;likeArray.length;i++)&#123;</div><div class="line">       ary.push(likeArray[i])</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ary;</div><div class="line"></div><div class="line">    <span class="comment">//call在低版本IE下不支持</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(likeArray);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>综合写法，不存在兼容性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toArray</span>(<span class="params">likeArray</span>) </span>&#123;</div><div class="line">     <span class="keyword">var</span> ary=[];</div><div class="line">     <span class="keyword">try</span> &#123;</div><div class="line">         ary.slice.call(likeArray);</div><div class="line">         <span class="comment">//return ary.__proto__.slice.call(likeArray);</span></div><div class="line">         <span class="comment">//return Array.prototype.slice.call(likeArray,0);</span></div><div class="line">     &#125;</div><div class="line">     <span class="keyword">catch</span> (e)&#123;</div><div class="line">         <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;likeArray.length;i++)&#123;</div><div class="line">             ary.push(likeArray[i])</div><div class="line">         &#125;</div><div class="line">         <span class="keyword">return</span> ary;</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="用apply求数组最大值"><a href="#用apply求数组最大值" class="headerlink" title="用apply求数组最大值"></a>用apply求数组最大值</h2><ul>
-<li>用sort方法排序</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ary=[<span class="number">23</span>,<span class="number">5328712</span>,<span class="number">436</span>,<span class="number">7814</span>,<span class="number">550</span>];</div><div class="line"><span class="comment">//排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">max1</span>(<span class="params">ary</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> ary.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> b-a;</div><div class="line">    &#125;)[<span class="number">0</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>用eval方法排序</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//eval</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">max2</span>(<span class="params">ary</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">'Math.max('</span>+ary+<span class="string">')'</span>);</div><div class="line">    <span class="comment">//return eval('Math.max('+ary.toString()+')');</span></div><div class="line">    <span class="comment">//return eval('Math.max('+ary.join()+')');</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>用apply方法排序</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//apply</span></div><div class="line"><span class="comment">//console.log(Math.max.apply(null, ary));</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">max3</span>(<span class="params">ary</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, ary);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>用假设法排序</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//假设法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">max4</span>(<span class="params">ary</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> max=ary[<span class="number">0</span>];</div><div class="line">    ary.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">         max=item&gt;=max?item:max;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="用apply求数组平均值"><a href="#用apply求数组平均值" class="headerlink" title="用apply求数组平均值"></a>用apply求数组平均值</h2><ul>
-<li>用sort排序</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//平均值</span></div><div class="line"><span class="keyword">var</span> ary=[<span class="number">23</span>,<span class="number">5328712</span>,<span class="number">436</span>,<span class="number">7814</span>,<span class="number">550</span>];</div><div class="line"><span class="comment">//排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">average1</span>(<span class="params">ary</span>) </span>&#123;</div><div class="line">    ary.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> b-a;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">var</span> n=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;ary.length<span class="number">-1</span>;i++)&#123;</div><div class="line">        n+=ary[i];</div><div class="line">    &#125;</div><div class="line">    n=<span class="built_in">Math</span>.round(n/ary.length<span class="number">-2</span>);</div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>用eval排序</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//eval</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">average2</span>(<span class="params">ary</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> max=<span class="built_in">eval</span>(<span class="string">'Math.max('</span>+ary+<span class="string">')'</span>);<span class="comment">//最大值</span></div><div class="line">    <span class="keyword">var</span> max=<span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, ary);</div><div class="line">    <span class="keyword">var</span> min=<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>, ary);</div><div class="line">    <span class="keyword">var</span> sum=ary.join(<span class="string">"+"</span>).replace(max.toString(),<span class="string">"0"</span>).replace(min.toString(),<span class="string">"0"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="built_in">eval</span>(sum)/(ary.length<span class="number">-2</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="检测数据类型"><a href="#检测数据类型" class="headerlink" title="检测数据类型"></a>检测数据类型</h2><ol>
-<li>typeof 返回值是一个字符串；<br>如果用两个及两个以上的typeof检测的话返回值是string，但他有局限性，能检测基本数据类型，其中null返回object<ul>
-<li>对于引用数据类型不能详细检测，只有object和function</li>
-</ul>
-</li>
-<li>instanceof 检测一个实例是否属于某个类，<br>因为每一种数据类型都对应自己所属的类，所以我们可以通过他来检测数据类型，但也有局限性，对于基本数据类型，用字面量创建方式创建的变量检测不出来，构造函数创建方式可以，引用数据类型可以详细检测</li>
-<li>类原型上的constructor，每个类的原型（prototype）上都有一个constructor属性，他指向类本身，那么一个具体的数据类型的实例.constructor<ul>
-<li>比如<code>&quot;11&quot;.constructor-&gt;&quot;11&quot;.__proto__-&gt;String.prototype</code>，String原型上有constructor指向String本身，你也可以通过他的name来得到String类名，也就是他的数据类型</li>
-</ul>
-</li>
-<li>对象Object类的原型上有一个toString，它可以检测数据类型，那么我们就可以调用<code>Object.prototype.toString()</code>这个方法，用call方法将里面的this改变成我想检测的那个数据，会得到[object 数据类型]</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">    <span class="built_in">Object</span>.prototype.toString(<span class="built_in">Array</span>)</div><div class="line">    <span class="string">"[object Object]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">Array</span>)</div><div class="line">    <span class="string">"[object Function]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">Number</span>)</div><div class="line">    <span class="string">"[object Function]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="number">32</span>)</div><div class="line">    <span class="string">"[object Number]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="string">'32'</span>)</div><div class="line">    <span class="string">"[object String]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>)</div><div class="line">    <span class="string">"[object Null]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>)</div><div class="line">    <span class="string">"[object Undefined]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;)</div><div class="line">    <span class="string">"[object Function]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call([<span class="number">2</span>,<span class="number">4</span>])</div><div class="line">    <span class="string">"[object Array]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(&#123;<span class="number">3</span>:<span class="number">4</span>,<span class="attr">fr</span>:<span class="string">'gr'</span>&#125;)</div><div class="line">    <span class="string">"[object Object]"</span></div><div class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>)</div><div class="line">    <span class="string">"[object Boolean]"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> s=<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>);</div><div class="line">s=s.split(<span class="string">" "</span>)[<span class="number">1</span>].replace(<span class="string">"]"</span>,<span class="string">""</span>);</div><div class="line"></div><div class="line"><span class="comment">//call,apply,bind在IE低版本下不支持</span></div><div class="line"><span class="comment">//try&#123;&#125;catch(e)&#123;&#125;</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getType</span>(<span class="params">type</span>) </span>&#123;</div><div class="line">    <span class="keyword">try</span>&#123;</div><div class="line">        <span class="keyword">var</span> s=<span class="built_in">Object</span>.prototype.toString.call(type);</div><div class="line">        <span class="keyword">return</span> s.split(<span class="string">" "</span>)[<span class="number">1</span>].replace(<span class="string">"]"</span>,<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (e)&#123;</div><div class="line">        <span class="built_in">console</span>.log(e.message);</div><div class="line">        <span class="keyword">return</span> type.constructor.name;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="DOM映射"><a href="#DOM映射" class="headerlink" title="DOM映射"></a>DOM映射</h2><ul>
-<li>DOM映射：<br>通过DOM方法获取的一个元素集合（类数组），这个集合仍然和页面保持联系，并且这个元素集合会随着页面元素的增加而增加，减少而减少即使把这个类数组转为一个数组，每个元素仍然和页面有联系，这就叫做DOM映射</li>
-<li>回流：元素的位置发生改变（增加元素、删除元素、移动）引起回流，让整个页面重新渲染一遍，从而造成的性能浪费</li>
-<li>重绘：元素的样式发生改变，就会把当前的这个元素重新渲染一遍，所以在以后的项目中，能用重绘代替的就不用回流，能用一次回流就不要用多次</li>
-<li><p>向页面增加元素的方式</p>
-<ol>
-<li>动态创建方式，document.createElement，然后一个个appendChild，会造成多次回流，但是他有个好处是不会改变原来的元素（比如不会影响他之前绑定的事件）</li>
-<li>通过拼接字符串，最后在一次性通过innerHTML，这样只会引起一次性回流比较好，但是，他会改变原来的元素（比如会影响他之前绑定的事件）</li>
-<li><p>文档碎片，他就是一个容器专门来盛放DOM元素的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> flg=<span class="built_in">document</span>.createDocumentFragment();</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;jsonData.length;i++)&#123;</div><div class="line">    <span class="keyword">var</span> oLi=<span class="built_in">document</span>.createElement(<span class="string">"li"</span>);</div><div class="line">    oLi.innerHTML=jsonData[i].content;</div><div class="line">    oLi.className=jsonData[i].class;</div><div class="line">    flg.appendChild(oLi);</div><div class="line">&#125;</div><div class="line">news.appendChild(flg);</div><div class="line">flg=<span class="literal">null</span>;  <span class="comment">//用完清空</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>向页面增加元素的步骤：</p>
-<ol>
-<li>先创建元素</li>
-<li>给元素增加需要的属性</li>
-<li>暂时存放在DOM文档碎片中，也是appendChild进去的</li>
-<li>循环完之后，把整个flg文档碎片放到ul中，<code>news.appendChild(flg)</code></li>
-</ol>
-</li>
-</ul>
-
+</code></pre><hr>
+        
+          <a class="article-more-a" href="/2017/05/26/改变this的方法/#more">more >></a>
+        
       
 
       
@@ -742,65 +392,10 @@
 <li>模块化开发：<br>将一个完整的项目分模块，多人共同开发，每个人分的模块写在一个对象里面，就是单例模式</li>
 <li>单例模式：<br>就是一个对象，主要是解决命名冲突的问题，注意一点，函数之间可以用this相互调用，this就是那个单例模式那个对象</li>
 </ul>
-<hr>
-<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><ul>
-<li>工厂模式：我们把实现相同功能的方法封装成一个函数，以后再想实现这个功能，就不用再写一遍代码了，直接执行函数，通过参数来得到具体的实例</li>
-<li>批量生产：低耦合高內聚，减少代码的冗余，提高代码利用率</li>
-<li>JS中没有重载，只有重写（后面替换前面），如果想实现重载的原理就不要写形参，用arguments处理</li>
-</ul>
-<hr>
-<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>&nbsp;&nbsp;实例通过this得到的是私有属性和方法，还可以继承所属类的共有属性和方法，比如说每个数组都可以用sort方法，这个方法是在类Array原型上，因为所有的数组都是Array类的一个具体的实例，所以只要是数组就可以使用。</p>
-<ul>
-<li>原型模式<ol>
-<li>每一个函数数据类型（函数、所有的类）天生都有一个prototype（原型）属性，prototype中存储的是公有的属性和方法，属性存储的是对象数据类型的，浏览器会为其开辟一个堆内存</li>
-<li>这个堆内存中有一个天生自带的属性constructor（构造函数），这个属性指向的是类本身</li>
-<li>所有的对象数据类型（除了函数和基本数据类型其他的都是，实例，prototype），天生自带一个属性叫<code>__proto__</code>，指向所属类的原型</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>所有的类都是函数数据类型，Object是一个类，说明Object是函数数据类型的，就是函数Function的一个实例</p>
-</blockquote>
-<ul>
-<li>用面向对象的思想扩展方法–&gt;基于内置类的原型扩展方法</li>
-</ul>
-<hr>
-<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><ul>
-<li>函数三重身份：<ol>
-<li>普通的函数，代表一个方法；</li>
-<li>代表一个类（通过构造函数创建方式，自定义类）；</li>
-<li>Function类的一个实例</li>
-</ol>
-</li>
-<li>new：<br>就是构造函数创建方式，Fn函数就是一个类，obj1就是Fn类的一个实例</li>
-<li><p>Fn执行创建的过程：</p>
-<ol>
-<li>形成一个私有作用域   </li>
-<li>预解释   </li>
-<li>自动创建一个实例，this   </li>
-<li>代码执行的时候，通过this给实例增加私有属性并赋值</li>
-<li><p>默认返回当前的实例</p>
-<blockquote>
-<p>注意：<br>1.通过this给实例增加的是私有属性，每个实例之间的私有属性是私有的，不一样<br>2.不用写return直接返回this，如果你写了，写的是基本数据类型的话，没有影响；如果写的是引用数据类型，就会把this修改，返回return后面结果</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//var obj1=new Fn()等价于var obj1=new Fn</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//this -&gt;obj</span></div><div class="line">    <span class="keyword">this</span>.name=<span class="string">"校长"</span>;</div><div class="line">    <span class="keyword">this</span>.age=<span class="number">60</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj1=<span class="keyword">new</span> Fn();</div><div class="line"><span class="built_in">console</span>.log(obj1);</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h2 id="面向对象思想"><a href="#面向对象思想" class="headerlink" title="面向对象思想"></a>面向对象思想</h2><ul>
-<li>在JS中所有的东西都是对象<ul>
-<li>类：比如说自然界有人类，哺乳类，各种类</li>
-<li>在JS中有【内置类】和【自定义类】<ul>
-<li>【内置类】：每一种数据类型都是一个类，Number，String，Boolean，Null，Undefined，Array，Regexp，Object，Date，Function（注意：Math不是一个类，就是一个对象）</li>
-<li>元素都有自己的内置类</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+<h2 id=""><a href="#" class="headerlink" title="    "></a>
+        
+          <a class="article-more-a" href="/2017/05/26/JS一些模式与思想/#more">more >></a>
+        
       
 
       
@@ -874,80 +469,10 @@
 </ol>
 </li>
 </ul>
-<hr>
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><ul>
-<li>作用域：<br><br>全局作用域（window，一打开浏览器就会形成）和私有作用域（一个函数执行就是一个私有作用域，函数执行私有作用域形成）</li>
-<li>声明：告诉浏览器这里存在变量，var关键字只有声明</li>
-<li>定义：赋值过程，function不仅声明还要定义</li>
-</ul>
-<blockquote>
-<p>注意：<br>1.预解释的时候遇到变量已经声明过了，就不用重新声明，但是要重新定义<br>2.查找上一级作用域：看当前函数的堆内存在哪个作用域定义的，就是它的上级作用域，跟在哪执行没关系</p>
-</blockquote>
-<pre><code>//内存分为两种（堆内存和栈内存）
-//堆内存：存储东西，一般都是存储引用数据类型
-//栈内存：作用域
-</code></pre><h2 id="内存的销毁机制"><a href="#内存的销毁机制" class="headerlink" title="内存的销毁机制"></a>内存的销毁机制</h2><ul>
-<li><p>堆内存<br>只要这个堆内存没有被任何变量或者属性占用，浏览器就会主动将它销毁，其他的需要手动销毁，注意以后在做项目的时候遇到一个对象</p>
-<ul>
-<li>后面不用了，手动清空一下，obj=null</li>
-</ul>
-</li>
-<li><p>栈内存<br></p>
-<ul>
-<li>全局作用域：关闭浏览器的时候销毁，以后在做项目的时候尽量避免全局变量的使用</li>
-<li><p>私有作用域：相同的函数，每一次执行都会形成一个私有作用域，他们之间没有任何关系</p>
-<ul>
-<li>立即销毁：函数没有返回值，或者返回值的内容没有被占用，浏览器就会把他销毁了</li>
-<li>暂时不销毁：函数有返回值，这个返回的函数接着执行，完了之后浏览器会抽时间销毁</li>
-<li>不销毁:函数执行返回一个地址，一直被外界变量占用着</li>
-</ul>
-<blockquote>
-<p>作用域不销毁这个概念，主要是用在给元素绑定事件的时候</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="引用数据类型的赋值"><a href="#引用数据类型的赋值" class="headerlink" title="引用数据类型的赋值"></a>引用数据类型的赋值</h2><ol>
-<li>浏览器先判断赋值的数据类型</li>
-<li>引用数据类型的话，浏览器先开辟一个堆内存，将里面的值存起来</li>
-<li>将地址赋给变量名</li>
-</ol>
-<hr>
-<h2 id="this问题"><a href="#this问题" class="headerlink" title="this问题"></a>this问题</h2><ul>
-<li>this执行的主体，谁来执行的<ul>
-<li>全局作用域下this就是window</li>
-<li>私有作用域下<ol>
-<li>自执行函数中的this是window</li>
-<li>给元素绑定事件的时候，绑定的元素对象是this</li>
-<li>函数执行的时候看前面有没有点，有的话点前面是谁this就是谁，没有点就是window</li>
-<li>函数作为参数的时候，this是window</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><ul>
-<li><p>闭包：<br>是一种机制，函数执行的时候会形成一个私有作用域，来保护里面的变量不受外界的干扰，我们把这种机制叫做闭包</p>
-<ul>
-<li>私有变量：参数和私有作用域下预解释的变量</li>
-<li><p>函数执行的步骤：</p>
-<ol>
-<li>形成私有作用域</li>
-<li>给形参赋值</li>
-<li>预解释</li>
-<li>函数体执行</li>
-</ol>
-<blockquote>
-<p>在私有作用域下遇到变量先看是不是自己的私有变量（两种），是的话就是私有的，不是的话就往上一级找，直到找到window，这种查找机制叫做作用域链，私有作用域下的私有变量外界访问不到，但是可以获取外界的变量。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-
+<h2 id=""><a href="#" class="headerlink" title="        "></a>
+        
+          <a class="article-more-a" href="/2017/05/26/JS基础概念/#more">more >></a>
+        
       
 
       
@@ -1005,9 +530,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="获取当前时间的递增"><a href="#获取当前时间的递增" class="headerlink" title="获取当前时间的递增"></a>获取当前时间的递增</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> div=<span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line"><span class="built_in">document</span>.body.appendChild(div);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">z</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">   n=<span class="built_in">Number</span>(n);</div><div class="line">   <span class="keyword">if</span> (n&lt;<span class="number">10</span>)&#123;</div><div class="line">       <span class="keyword">return</span> <span class="string">"0"</span>+n;</div><div class="line">   &#125;<span class="keyword">else</span>&#123;</div><div class="line">       <span class="keyword">return</span> n;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTime</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>();<span class="comment">// 获取本机时间</span></div><div class="line">   <span class="comment">// console.log(time);// Thu Apr 20 2017 10:33:40 GMT+0800 (中国标准时间)</span></div><div class="line">   <span class="keyword">var</span> year=time.getFullYear();<span class="comment">//设置 Date 对象中的年份（四位数字）</span></div><div class="line">   <span class="keyword">var</span> month=time.getMonth();<span class="comment">//根据世界时设置 Date 对象中的月份 (0 ~ 11)</span></div><div class="line">   <span class="keyword">var</span> day=time.getDate();<span class="comment">//从 Date 对象返回一个月中的某一天 (1 ~ 31)</span></div><div class="line">   <span class="keyword">var</span> week=time.getDay();<span class="comment">//从 Date 对象返回一周中的某一天 (0 ~ 6) 代表周日-周六</span></div><div class="line">   <span class="keyword">var</span> weeks=<span class="string">'日一二三四五六'</span>;</div><div class="line">   <span class="keyword">var</span> weekTody=<span class="string">"周"</span>+weeks.charAt(week);</div><div class="line">   <span class="keyword">var</span> hours=time.getHours();<span class="comment">//返回 Date 对象的小时 (0 ~ 23)</span></div><div class="line">   <span class="keyword">var</span> minutes=time.getMinutes();<span class="comment">//返回 Date 对象的分钟 (0 ~ 59)</span></div><div class="line">   <span class="keyword">var</span> seconds=time.getSeconds();<span class="comment">//返回 Date 对象的秒数 (0 ~ 59)</span></div><div class="line">   <span class="keyword">var</span> mSeconds=time.getMilliseconds();<span class="comment">//返回 Date 对象的毫秒(0 ~ 999)</span></div><div class="line">   <span class="keyword">var</span> str=year+<span class="string">"年"</span>+z((month+<span class="number">1</span>))+<span class="string">"月"</span>+z(day)+<span class="string">"日 "</span>+weekTody+z(hours)+<span class="string">":"</span>+z(minutes)+<span class="string">":"</span>+z(seconds)+<span class="string">":"</span>+z(mSeconds);</div><div class="line">   div.innerText=str;</div><div class="line">&#125;</div><div class="line">getTime();</div><div class="line"><span class="keyword">var</span> time=setInterval(getTime,<span class="number">1</span>);</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="倒计时"><a href="#倒计时" class="headerlink" title="倒计时"></a>倒计时</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> box=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"div"</span>)[<span class="number">0</span>];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">z</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    n=<span class="built_in">Number</span>(n);</div><div class="line">    <span class="keyword">if</span> (n&lt;<span class="number">10</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"0"</span>+n;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> n;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">z1</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    n=<span class="built_in">Number</span>(n);</div><div class="line">    <span class="keyword">if</span> (n&lt;<span class="number">10</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"00"</span>+n;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (n&lt;<span class="number">100</span>&amp;&amp;n&gt;=<span class="number">10</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"0"</span>+n;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> n;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTime</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//目标时间  当前时间  还要多久到达目标时间</span></div><div class="line">    <span class="keyword">var</span> now=<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">    <span class="comment">//目标时间：2017／04／20 13：00：00</span></div><div class="line">    <span class="comment">//将目标时间的格式改编为计算机的标准时间</span></div><div class="line">    <span class="keyword">var</span> toDate=<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2017/04/20 13:00:00"</span>);<span class="comment">//在IE67下"-"不支持，要转为"／"</span></div><div class="line">    <span class="keyword">var</span> val=toDate-now;<span class="comment">//值是毫秒</span></div><div class="line">    <span class="comment">//将取到的毫秒差，转为X天、X时、X分、X秒</span></div><div class="line">    <span class="comment">//一天有24时，一小时有60分，一分钟有60秒，一秒有1000毫秒；一天有86400000</span></div><div class="line">    <span class="comment">//var day=parseInt(val/(24*60*60*1000));</span></div><div class="line">    <span class="keyword">var</span> day=<span class="built_in">Math</span>.floor(val/(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</div><div class="line">    <span class="built_in">console</span>.log(toDate);</div><div class="line">    <span class="comment">//val lastMsecond=val-day*(24*60*60*1000);</span></div><div class="line">    <span class="keyword">var</span> lastMsecond=val%(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</div><div class="line">    <span class="keyword">var</span> hour=<span class="built_in">Math</span>.floor(lastMsecond/(<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</div><div class="line">    lastMsecond=lastMsecond-hour*(<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</div><div class="line">    <span class="keyword">var</span> minutes=<span class="built_in">Math</span>.floor(lastMsecond/(<span class="number">60</span>*<span class="number">1000</span>));</div><div class="line">    lastMsecond=lastMsecond-minutes*(<span class="number">60</span>*<span class="number">1000</span>);</div><div class="line">    <span class="keyword">var</span> seconds=<span class="built_in">Math</span>.floor(lastMsecond/<span class="number">1000</span>);</div><div class="line">    lastMsecond=lastMsecond-seconds*<span class="number">1000</span>;</div><div class="line">    <span class="keyword">var</span> str=<span class="string">"距下课还有"</span>+day+<span class="string">"天"</span>+hour+<span class="string">"小时"</span>+z(minutes)+<span class="string">"分钟"</span>+z(seconds)+<span class="string">"秒"</span>+z1(lastMsecond)+<span class="string">"毫秒"</span>;</div><div class="line">    box.innerHTML=str;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> time=setInterval(getTime,<span class="number">1</span>);</div></pre></td></tr></table></figure>
+        <h2 id="获取当前时间的递增"><a href="#获取当前时间的递增" class="headerlink" title="获取当前时间的递增"></a>获取当前时间的递增</h2>
+        
+          <a class="article-more-a" href="/2017/05/26/倒计时案例/#more">more >></a>
+        
       
 
       
@@ -1065,25 +591,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="事件类"><a href="#事件类" class="headerlink" title="事件类"></a>事件类</h2><p>获取时间类的数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="built_in">console</span>.log(time);<span class="comment">//Thu Apr 20 2017 10:34:38 GMT+0800 (CST)</span></div></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="事件类中时间量的获取"><a href="#事件类中时间量的获取" class="headerlink" title="事件类中时间量的获取"></a>事件类中时间量的获取</h2><ul>
-<li><p><code>var time=new Date();</code> 获取本机时间</p>
-<pre><code>console.log(time);// Thu Apr 20 2017 10:33:40 GMT+0800 (中国标准时间)
-</code></pre></li>
-<li><code>var year=time.getFullYear();</code> 设置 Date 对象中的年份（四位数字）</li>
-<li><code>var month=time.getMonth();</code> 根据世界时设置 Date 对象中的月份 (0 ~ 11)</li>
-<li><code>var day=time.getDate();</code> 从 Date 对象返回一个月中的某一天 (1 ~ 31)</li>
-<li><p><code>var week=time.getDay();</code> 从 Date 对象返回一周中的某一天 (0 ~ 6) 代表周日-周六</p>
-<pre><code>var weeks=&apos;日一二三四五六&apos;;
-var weekTody=&quot;周&quot;+weeks.charAt(week);
-</code></pre></li>
-<li><code>var hours=time.getHours();</code> 返回 Date 对象的小时 (0 ~ 23)</li>
-<li><code>var minutes=time.getMinutes();</code> 返回 Date 对象的分钟 (0 ~ 59)</li>
-<li><code>var seconds=time.getSeconds();</code> 返回 Date 对象的秒数 (0 ~ 59)</li>
-<li><code>var mSeconds=time.getMilliseconds();</code> 返回 Date 对象的毫秒(0 ~ 999)</li>
-</ul>
-
+        <h2 id="事件类"><a href="#事件类" class="headerlink" title="事件类"></a>事件类</h2><p>获取时间类的数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="built_in">console</span>.log(time);<span class="comment">//Thu Apr 20 2017 10:34:38 GMT+0800 (CST)</span></div></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+        
+          <a class="article-more-a" href="/2017/05/26/获取时间的递增/#more">more >></a>
+        
       
 
       
@@ -1141,12 +654,10 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ary=[<span class="number">10</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;ary.length<span class="number">-1</span>;i++)&#123;</div><div class="line">    <span class="keyword">var</span> flag=<span class="literal">false</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;ary.length-i<span class="number">-1</span>;j++)&#123;</div><div class="line">        <span class="keyword">if</span>(ary[j]&gt;ary[j+<span class="number">1</span>])&#123;</div><div class="line">            <span class="keyword">var</span> cur=ary[j];</div><div class="line">            ary[j]=ary[j+<span class="number">1</span>];</div><div class="line">            ary[j+<span class="number">1</span>]=cur;</div><div class="line">            flag=<span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(!flag) <span class="keyword">break</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//输出一个从小到大排序好的数组</span></div><div class="line"><span class="built_in">console</span>.log(ary);</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取数组中的最大值</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">maxnum</span>(<span class="params">ary</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> max=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;ary.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(max&lt;ary[i])&#123;</div><div class="line">            max=ary[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(maxnum(ary));</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ary=[<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">7</span>];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">qs</span>(<span class="params">newary</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span>(newary.length&lt;=<span class="number">1</span>)&#123;</div><div class="line">       <span class="keyword">return</span> newary;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//获取参照项</span></div><div class="line">   <span class="keyword">var</span> val=newary.splice(<span class="number">0</span>,<span class="number">1</span>)[<span class="number">0</span>];<span class="comment">//获取数组[2]里的2</span></div><div class="line">   <span class="keyword">var</span> left=[],right=[];</div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;newary.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(newary[i]&lt;val)&#123;</div><div class="line">            left.push(newary[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            right.push(newary[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> qs(left).concat(val,qs(right));</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(qs(ary));</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//首先拿一张牌放手里，再去拿其他牌，每次摸到一张去跟手里的牌比较（一般都是从后往前比较），遇到比他还小的，就放在他前面</span></div><div class="line"><span class="keyword">var</span> ary=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">0</span>,<span class="number">3</span>];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">newary</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> aryCur=[];</div><div class="line">    aryCur.push(newary.shift());<span class="comment">//newary=[4,7,9,0,3],aryCur=[1];</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;newary.length;i++)&#123;</div><div class="line">         <span class="comment">//newary[i]去跟aryCur中的每一项比较（从后往前比）</span></div><div class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> j=aryCur.length<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)&#123;</div><div class="line">             <span class="keyword">if</span>(newary[i]&gt;aryCur[j])&#123;</div><div class="line">                 aryCur.splice(j+<span class="number">1</span>,<span class="number">0</span>,newary[i]);</div><div class="line">                 <span class="keyword">break</span>;</div><div class="line">          	 &#125;</div><div class="line">             <span class="keyword">else</span> <span class="keyword">if</span> (j===<span class="number">0</span>)&#123;</div><div class="line">                 aryCur.unshift(newary[i]);</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> aryCur;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(insertSort(ary));</div></pre></td></tr></table></figure>
+        <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2>
+        
+          <a class="article-more-a" href="/2017/05/26/排序/#more">more >></a>
+        
       
 
       
@@ -1204,10 +715,10 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>效果：当点击页卡的时候，其他页面隐藏，点击页卡对应页面显示</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这里是html结构--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"cur"</span>&gt;</span>电影<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>电视剧<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>综艺<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>动漫<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cur"</span>&gt;</span>电影<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>电视剧<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>综艺<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>动漫<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">／*这里是<span class="selector-tag">css</span>样式*／</div><div class="line">*&#123;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">ul</span>&#123;</div><div class="line">    <span class="attribute">list-style</span>: none;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">    <span class="attribute">width</span>: <span class="number">404px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">50px</span>;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">ul</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">    <span class="attribute">content</span>: <span class="string">""</span>;</div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">li</span>&#123;</div><div class="line">    <span class="attribute">float</span>: left;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#0090c9</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">    <span class="attribute">cursor</span>: pointer;</div><div class="line">    <span class="attribute">border-right</span>: <span class="number">1px</span> solid black;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">div</span>&#123;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">    <span class="attribute">width</span>: <span class="number">404px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">300px</span>;</div><div class="line">    <span class="attribute">background-color</span>: cadetblue;</div><div class="line">    <span class="attribute">color</span>: white;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">30px</span>;</div><div class="line">    <span class="attribute">display</span>: none;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">li</span><span class="selector-class">.cur</span>&#123;</div><div class="line">    <span class="attribute">background-color</span>: cadetblue;</div><div class="line">    <span class="attribute">color</span>: white;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">div</span><span class="selector-class">.cur</span>&#123;</div><div class="line">     <span class="attribute">display</span>: block;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是javascript代码</span></div><div class="line"><span class="keyword">var</span> list=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"li"</span>);</div><div class="line"><span class="keyword">var</span> divs=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"div"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myfn</span>(<span class="params">thisClick</span>) </span>&#123;</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;list.length;i++)&#123;</div><div class="line">           list[i].className=<span class="string">""</span>;</div><div class="line">           divs[i].className=<span class="string">""</span>;</div><div class="line">      &#125;</div><div class="line">      list[thisClick].className=<span class="string">"cur"</span>;</div><div class="line">      divs[thisClick].className=<span class="string">"cur"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;list.length;i++) &#123;</div><div class="line">      list[i].index = i;</div><div class="line">      list[i].onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            myfn(<span class="keyword">this</span>.index);</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>效果：当点击页卡的时候，其他页面隐藏，点击页卡对应页面显示<br>
+        
+          <a class="article-more-a" href="/2017/05/26/简易的选项卡/#more">more >></a>
+        
       
 
       
@@ -1265,11 +776,10 @@ var weekTody=&quot;周&quot;+weeks.charAt(week);
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>效果：在页面中写入九九乘法表，并让此九九乘法表隔行变色</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/*这里是CSS样式*/</div><div class="line">&lt;style&gt;</div><div class="line">	//这里是让每一行鼠标变成小手样式</div><div class="line">   div&#123;</div><div class="line">       cursor: pointer;</div><div class="line">   &#125;</div><div class="line">   span&#123;</div><div class="line">       margin: 10px;</div><div class="line">   &#125;</div><div class="line">   .bg1&#123;</div><div class="line">       background-color: #0090c9;</div><div class="line">   &#125;</div><div class="line">   .bg2&#123;</div><div class="line">       background-color: pink;</div><div class="line">   &#125;</div><div class="line">   .bg3&#123;</div><div class="line">       background-color: rgba(0,0,0,.3);</div><div class="line">   &#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
-<p>注意：这里html中先不写入</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是javascript代码</span></div><div class="line"><span class="keyword">var</span> stu=<span class="string">""</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">	<span class="comment">//隔行变色</span></div><div class="line">    stu+=<span class="string">"&lt;p class=bg"</span>+(i%<span class="number">2</span>+<span class="number">1</span>)+<span class="string">"&gt;"</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">1</span>;j&lt;i+<span class="number">1</span>;j++)&#123;</div><div class="line">    	<span class="comment">//列数*行数=两者乘机</span></div><div class="line">        stu+=<span class="string">"&lt;span&gt;"</span>+j+<span class="string">"*"</span>+i+<span class="string">"="</span>+(j*i)+<span class="string">"&lt;/span&gt;"</span>;</div><div class="line">    &#125;</div><div class="line">    stu+=<span class="string">"&lt;/p&gt;"</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//在文档中写入九九乘法表</span></div><div class="line"><span class="built_in">document</span>.write(stu);</div><div class="line"><span class="comment">//获取九九乘法表中的每一行</span></div><div class="line"><span class="keyword">var</span> para=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"p"</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;para.length;i++)&#123;</div><div class="line">	<span class="comment">//给每个p标签一个自定义属性用于存储i+1</span></div><div class="line">    para[i].index=i+<span class="number">1</span>;</div><div class="line">    <span class="comment">//将当前行数进行输出</span></div><div class="line">    para[i].onclick=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="string">"第"</span> + <span class="keyword">this</span>.index + <span class="string">"行"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//鼠标移入触发，改变背景颜色，同时将原背景存在当前p元素的自定义属性中</span></div><div class="line">    para[i].onmouseover=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.thisname=<span class="keyword">this</span>.className;</div><div class="line">        <span class="keyword">this</span>.className=<span class="string">"bg3"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//鼠标移出触发，将当前p元素背景颜色改变为原来的背景颜色</span></div><div class="line">    para[i].onmouseout=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.className=<span class="keyword">this</span>.thisname;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+        <p>效果：在页面中写入九九乘法表，并让此九九乘法表隔行变色<br>
+        
+          <a class="article-more-a" href="/2017/05/26/隔行变色-显示行数-九九乘法表/#more">more >></a>
+        
       
 
       

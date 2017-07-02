@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://qiminghaonan.com">
   <title>less文件 | um-brella的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="less文件格式less也是写样式的跟css一样都是实现样式的写法，只不过语法不一样，它涵盖了一些JS的思想 变量 在JS中var color=”red”; 在less中变量前面加上@符号  12345/*less格式*/@color:#ff6700;.box1&amp;#123;    color: @color;&amp;#125; 1234/*css格式*/.box1 &amp;#123;  color: #ff6">
+  <meta name="description" content="less文件格式less也是写样式的跟css一样都是实现样式的写法，只不过语法不一样，它涵盖了一些JS的思想 变量 在JS中var color=”red”; 在less中变量前面加上@符号">
 <meta name="keywords" content="CSS3教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="less文件">
 <meta property="og:url" content="http://qiminghaonan.com/2017/06/11/less文件/index.html">
 <meta property="og:site_name" content="um-brella的博客">
-<meta property="og:description" content="less文件格式less也是写样式的跟css一样都是实现样式的写法，只不过语法不一样，它涵盖了一些JS的思想 变量 在JS中var color=”red”; 在less中变量前面加上@符号  12345/*less格式*/@color:#ff6700;.box1&amp;#123;    color: @color;&amp;#125; 1234/*css格式*/.box1 &amp;#123;  color: #ff6">
-<meta property="og:updated_time" content="2017-06-11T11:59:06.000Z">
+<meta property="og:description" content="less文件格式less也是写样式的跟css一样都是实现样式的写法，只不过语法不一样，它涵盖了一些JS的思想 变量 在JS中var color=”red”; 在less中变量前面加上@符号">
+<meta property="og:updated_time" content="2017-07-02T11:39:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less文件">
-<meta name="twitter:description" content="less文件格式less也是写样式的跟css一样都是实现样式的写法，只不过语法不一样，它涵盖了一些JS的思想 变量 在JS中var color=”red”; 在less中变量前面加上@符号  12345/*less格式*/@color:#ff6700;.box1&amp;#123;    color: @color;&amp;#125; 1234/*css格式*/.box1 &amp;#123;  color: #ff6">
+<meta name="twitter:description" content="less文件格式less也是写样式的跟css一样都是实现样式的写法，只不过语法不一样，它涵盖了一些JS的思想 变量 在JS中var color=”red”; 在less中变量前面加上@符号">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -171,6 +171,7 @@
 <li>在JS中var color=”red”;</li>
 <li>在less中变量前面加上@符号</li>
 </ul>
+<a id="more"></a>    
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="variable">@color:</span><span class="number">#ff6700</span>;</div><div class="line"><span class="selector-class">.box1</span>&#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@color</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css格式*/</span></div><div class="line"><span class="selector-class">.box1</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#ff6700</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="以变量的名定义为变量"><a href="#以变量的名定义为变量" class="headerlink" title="以变量的名定义为变量"></a>以变量的名定义为变量</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*less格式*/</span></div><div class="line"><span class="variable">@word:</span><span class="string">"I LOVE U"</span>;</div><div class="line"><span class="variable">@c:</span><span class="number">#ff6700</span>;</div><div class="line"><span class="variable">@var:</span><span class="string">"word"</span>;<span class="comment">//定义了一个变量var赋值为一个变量名word</span></div><div class="line"><span class="variable">@col:</span><span class="string">"c"</span>;<span class="comment">//定义了一个变量col赋值为一个变量名c</span></div><div class="line"><span class="selector-id">#p1</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="comment">//相当于content:@word;</span></div><div class="line">    <span class="attribute">content</span>: <span class="variable">@@var</span>;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">@@col</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>

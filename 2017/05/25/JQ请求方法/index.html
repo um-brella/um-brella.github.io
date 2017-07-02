@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://qiminghaonan.com">
   <title>JQ请求方法 | um-brella的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="load语法：load(“请求地址url”,传给服务器的参数,回调函数)  第一个参数是必须的，后俩可选 传给服务器的参数，不传的话表示的是get请求，传了的话表示post请求 回调函数不管你请求成功没有都会执行 回调函数默认给他传了三个参数： responseText:返回的数据 textStatus:请求状态信息 XHR:请求对象      123456789//这里是get文件夹下的11.h">
+  <meta name="description" content="load语法：load(“请求地址url”,传给服务器的参数,回调函数)  第一个参数是必须的，后俩可选 传给服务器的参数，不传的话表示的是get请求，传了的话表示post请求 回调函数不管你请求成功没有都会执行 回调函数默认给他传了三个参数： responseText:返回的数据 textStatus:请求状态信息 XHR:请求对象">
 <meta name="keywords" content="JS教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JQ请求方法">
 <meta property="og:url" content="http://qiminghaonan.com/2017/05/25/JQ请求方法/index.html">
 <meta property="og:site_name" content="um-brella的博客">
-<meta property="og:description" content="load语法：load(“请求地址url”,传给服务器的参数,回调函数)  第一个参数是必须的，后俩可选 传给服务器的参数，不传的话表示的是get请求，传了的话表示post请求 回调函数不管你请求成功没有都会执行 回调函数默认给他传了三个参数： responseText:返回的数据 textStatus:请求状态信息 XHR:请求对象      123456789//这里是get文件夹下的11.h">
-<meta property="og:updated_time" content="2017-05-25T12:25:12.000Z">
+<meta property="og:description" content="load语法：load(“请求地址url”,传给服务器的参数,回调函数)  第一个参数是必须的，后俩可选 传给服务器的参数，不传的话表示的是get请求，传了的话表示post请求 回调函数不管你请求成功没有都会执行 回调函数默认给他传了三个参数： responseText:返回的数据 textStatus:请求状态信息 XHR:请求对象">
+<meta property="og:updated_time" content="2017-07-02T11:37:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JQ请求方法">
-<meta name="twitter:description" content="load语法：load(“请求地址url”,传给服务器的参数,回调函数)  第一个参数是必须的，后俩可选 传给服务器的参数，不传的话表示的是get请求，传了的话表示post请求 回调函数不管你请求成功没有都会执行 回调函数默认给他传了三个参数： responseText:返回的数据 textStatus:请求状态信息 XHR:请求对象      123456789//这里是get文件夹下的11.h">
+<meta name="twitter:description" content="load语法：load(“请求地址url”,传给服务器的参数,回调函数)  第一个参数是必须的，后俩可选 传给服务器的参数，不传的话表示的是get请求，传了的话表示post请求 回调函数不管你请求成功没有都会执行 回调函数默认给他传了三个参数： responseText:返回的数据 textStatus:请求状态信息 XHR:请求对象">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -180,7 +180,8 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是get文件夹下的11.html文档</span></div><div class="line">&lt;body&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li&gt;唐僧&lt;/li&gt;</div><div class="line">    &lt;li&gt;猪八戒&lt;/li&gt;</div><div class="line">    &lt;li&gt;孙悟空&lt;/li&gt;</div><div class="line">    &lt;li&gt;沙和尚&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;<span class="regexp">/body&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>    
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里是get文件夹下的11.html文档</span></div><div class="line">&lt;body&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>唐僧<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>猪八戒<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>孙悟空<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>沙和尚<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">&lt;<span class="regexp">/body&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#get"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    $(<span class="string">"#box"</span>).load(<span class="string">"get/11.html"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">responseText,textStatus,XHR</span>) </span>&#123;</div><div class="line">        <span class="comment">/*</span></div><div class="line">        console.log(responseText);//11.html的所有数据内容</div><div class="line">        console.log(textStatus);//success或error</div><div class="line">        console.log(XHR);//请求对象具体内容</div><div class="line">        */</div><div class="line">        <span class="comment">//将传回来的数据根据`body`标签进行拆分，只需要`ul`标签內的内容</span></div><div class="line">        <span class="keyword">var</span> str=responseText.split(<span class="string">"&lt;body&gt;"</span>)[<span class="number">1</span>].split(<span class="string">"&lt;/body&gt;"</span>)[<span class="number">0</span>];</div><div class="line">        <span class="comment">//将`ul`标签內的内容放到$("#get")下</span></div><div class="line">        $(<span class="keyword">this</span>).html(str);</div><div class="line">    &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <hr>
 <h2 id="get"><a href="#get" class="headerlink" title="$.get"></a><code>$.get</code></h2><p>语法：<code>$.get(url,传给后台的数据,回调函数)</code></p>

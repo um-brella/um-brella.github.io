@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://qiminghaonan.com">
   <title>括号表达式与继承 | um-brella的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="括号表达式 保证一些操作语法符合浏览器的识别 自执行函数(function(){})() 基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如1.toString是错误的，应该写成 .toString或者(1).toString .toFixed(2) 保留两位小数   引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者({})">
+  <meta name="description" content="括号表达式 保证一些操作语法符合浏览器的识别  自执行函数(function(){})() 基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如1.toString是错误的，应该写成 .toString或者(1).toString .toFixed(2) 保留两位小数   引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者({}">
 <meta name="keywords" content="JS教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="括号表达式与继承">
 <meta property="og:url" content="http://qiminghaonan.com/2017/05/26/括号表达式与继承/index.html">
 <meta property="og:site_name" content="um-brella的博客">
-<meta property="og:description" content="括号表达式 保证一些操作语法符合浏览器的识别 自执行函数(function(){})() 基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如1.toString是错误的，应该写成 .toString或者(1).toString .toFixed(2) 保留两位小数   引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者({})">
-<meta property="og:updated_time" content="2017-05-26T13:11:10.000Z">
+<meta property="og:description" content="括号表达式 保证一些操作语法符合浏览器的识别  自执行函数(function(){})() 基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如1.toString是错误的，应该写成 .toString或者(1).toString .toFixed(2) 保留两位小数   引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者({}">
+<meta property="og:updated_time" content="2017-07-02T11:30:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="括号表达式与继承">
-<meta name="twitter:description" content="括号表达式 保证一些操作语法符合浏览器的识别 自执行函数(function(){})() 基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如1.toString是错误的，应该写成 .toString或者(1).toString .toFixed(2) 保留两位小数   引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者({})">
+<meta name="twitter:description" content="括号表达式 保证一些操作语法符合浏览器的识别  自执行函数(function(){})() 基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如1.toString是错误的，应该写成 .toString或者(1).toString .toFixed(2) 保留两位小数   引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者({}">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -167,7 +167,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="括号表达式"><a href="#括号表达式" class="headerlink" title="括号表达式"></a>括号表达式</h2><ol>
-<li>保证一些操作语法符合浏览器的识别<ul>
+<li><p>保证一些操作语法符合浏览器的识别</p>
+<ul>
 <li>自执行函数<code>(function(){})()</code></li>
 <li>基本数据中的数字不可以直接调取属性和方法（因为在浏览器中数字后面出现的第一个点表示数字的小数点）比如<code>1.toString</code>是错误的，应该写成<ul>
 <li><code>.toString</code>或者<code>(1).toString</code></li>
@@ -175,10 +176,12 @@
 </ul>
 </li>
 <li>引用数据类型中的对象不能直接调用方法和属性，必须通过对象名.属性名，或者<code>({}).属性名({a:1,b:2}).a</code></li>
-<li>注意在用eval遇到{}表示对象的时候用小括号包起来</li>
+<li>注意在用eval遇到{}表示对象的时候用小括号包起来<a id="more"></a>
+</li>
 </ul>
 </li>
-<li>计算的时候优先级最高</li>
+<li><p>计算的时候优先级最高</p>
+</li>
 <li>正则中()表示小分组，优先级也高</li>
 <li>本身也是有计算的效果<ul>
 <li>一个括号中如果包含多项，只会把最后一项的值（对于基本数据类型是值类型的，对于引用数据类型是地址值）copy过来，然后进行后续的处理</li>
