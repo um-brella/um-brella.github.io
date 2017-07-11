@@ -143,6 +143,209 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-webpack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/11/webpack/">webpack</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/11/webpack/" class="archive-article-date">
+  	<time datetime="2017-07-11T11:28:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="安装-sass-less-webpack，一般采用本地安装"><a href="#安装-sass-less-webpack，一般采用本地安装" class="headerlink" title="安装 sass less webpack，一般采用本地安装"></a>安装 sass less webpack，一般采用本地安装</h4><ul>
+<li>不会导致版本冲突 （开发依赖 -上线不需要）</li>
+</ul>
+<h4 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h4><h6 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init -y</div></pre></td></tr></table></figure>
+<h6 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack --save-dev</div></pre></td></tr></table></figure>
+<h4 id="创建一个webpack-config-js文件"><a href="#创建一个webpack-config-js文件" class="headerlink" title="创建一个webpack.config.js文件"></a>创建一个webpack.config.js文件</h4><h4 id="让js转化成ES5代码，需要使用babel"><a href="#让js转化成ES5代码，需要使用babel" class="headerlink" title="让js转化成ES5代码，需要使用babel"></a>让js转化成ES5代码，需要使用babel</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-core babel-loader --save-dev</div></pre></td></tr></table></figure>
+<h4 id="需要将es6-gt-es5"><a href="#需要将es6-gt-es5" class="headerlink" title="需要将es6-&gt;es5"></a>需要将es6-&gt;es5</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-preset-es2015 --save-dev</div></pre></td></tr></table></figure>
+<h4 id="需要将es7-gt-es5"><a href="#需要将es7-gt-es5" class="headerlink" title="需要将es7-&gt;es5"></a>需要将es7-&gt;es5</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-preset-stage-0 --save-dev</div></pre></td></tr></table></figure>
+<h4 id="解析CSS"><a href="#解析CSS" class="headerlink" title="解析CSS"></a>解析CSS</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install style-loader css-loader --save-dev</div></pre></td></tr></table></figure>
+<h4 id="解析less"><a href="#解析less" class="headerlink" title="解析less"></a>解析less</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install less less-loader --save-dev</div></pre></td></tr></table></figure>
+<h4 id="webpack服务，在内存中打包，可以时刻拿到最新的改动"><a href="#webpack服务，在内存中打包，可以时刻拿到最新的改动" class="headerlink" title="webpack服务，在内存中打包，可以时刻拿到最新的改动"></a>webpack服务，在内存中打包，可以时刻拿到最新的改动</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack-dev-server --save-dev</div></pre></td></tr></table></figure>
+<h4 id="html-webpack-plugin"><a href="#html-webpack-plugin" class="headerlink" title="html-webpack-plugin"></a>html-webpack-plugin</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install html-webpack-plugin --save-dev</div></pre></td></tr></table></figure>
+<h4 id="解析图片"><a href="#解析图片" class="headerlink" title="解析图片"></a>解析图片</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install url-loader file-loader --save-dev</div></pre></td></tr></table></figure>
+<h4 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install vue-cli -g</div></pre></td></tr></table></figure>
+<h4 id="vue-cli可以帮我们生成项目"><a href="#vue-cli可以帮我们生成项目" class="headerlink" title="vue-cli可以帮我们生成项目"></a>vue-cli可以帮我们生成项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vue init simple 项目名 //基本不用</div><div class="line">vue init webpack-simple 项目名 //基本不用</div></pre></td></tr></table></figure>
+<h4 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h4><ul>
+<li>runtime+compiler 两个都支持</li>
+<li>runtime-only 只能用render函数</li>
+</ul>
+<h2 id="webpack-config-js文件"><a href="#webpack-config-js文件" class="headerlink" title="webpack.config.js文件"></a>webpack.config.js文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by um_brella on 2017/7/11.</div><div class="line"> */</div><div class="line"><span class="comment">//webpack是基于commonjs规范的</span></div><div class="line"><span class="comment">//默认需要导出一个对象，让webpack使用</span></div><div class="line"><span class="keyword">let</span> path=<span class="built_in">require</span>(<span class="string">'path'</span>);<span class="comment">//resolve join</span></div><div class="line"><span class="keyword">let</span> HtmlWebpackPlugin=<span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"><span class="built_in">module</span>.exports=&#123;</div><div class="line">    <span class="attr">entry</span>:<span class="string">'./src/main.js'</span>,<span class="comment">//入口 填写相对路径</span></div><div class="line">    output:&#123;</div><div class="line">        <span class="attr">path</span>:path.resolve(<span class="string">'./dist'</span>),<span class="comment">//输出的路径 必须是绝对路径</span></div><div class="line">        filename:<span class="string">'bundle.js'</span><span class="comment">//打包后输出文件的名字</span></div><div class="line">    &#125;,</div><div class="line">    <span class="comment">//使用babel 需要babel-core babel-loader</span></div><div class="line">    <span class="built_in">module</span>:&#123;</div><div class="line">        <span class="attr">rules</span>:[</div><div class="line">            <span class="comment">//改编成ES5代码 匹配JS 变成ES5</span></div><div class="line">            &#123;<span class="attr">test</span>:<span class="regexp">/\.js$/</span>,<span class="attr">use</span>:<span class="string">'babel-loader'</span>,<span class="attr">exclude</span>:<span class="regexp">/node_modules/</span>&#125;,</div><div class="line">            <span class="comment">//需要两个loader css-loader style-loader以style标签的形式插入到html中，从右往左写</span></div><div class="line">            &#123;<span class="attr">test</span>:<span class="regexp">/\.css$/</span>,<span class="attr">use</span>:[<span class="string">'style-loader'</span>,<span class="string">'css-loader'</span>]&#125;,</div><div class="line">            <span class="comment">//使用less 需要安装less less-loader</span></div><div class="line">            &#123;<span class="attr">test</span>:<span class="regexp">/\.less$/</span>,<span class="attr">use</span>:[<span class="string">'style-loader'</span>,<span class="string">'css-loader'</span>,<span class="string">'less-loader'</span>]&#125;,</div><div class="line">            <span class="comment">//url-loader 需要file-loader，解析图片，一般8k以下文件转化成base64</span></div><div class="line">            &#123;<span class="attr">test</span>:<span class="regexp">/\.(jpg|jpeg|png|gif)$/</span>,<span class="attr">use</span>:[<span class="string">'url-loader?limit=8192'</span>]&#125;,</div><div class="line">            <span class="comment">//图标字体</span></div><div class="line">            &#123;<span class="attr">test</span>:<span class="regexp">/\.(woff|svg)$/</span>,<span class="attr">use</span>:[<span class="string">'url-loader?limit=8192'</span>]&#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">plugins</span>:[</div><div class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">            <span class="attr">template</span>:<span class="string">'./src/index.html'</span><span class="comment">//会自动将html，引入打包后的文件，导出到dist目录下</span></div><div class="line">        &#125;)</div><div class="line">    ]</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="babelrc文件"><a href="#babelrc文件" class="headerlink" title=".babelrc文件"></a>.babelrc文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;presets&quot;: [&quot;es2015&quot;,&quot;stage-0&quot;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/11/webpack/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Vue路由" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/11/Vue路由/">Vue路由</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/11/Vue路由/" class="archive-article-date">
+  	<time datetime="2017-07-11T11:12:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="router"><a href="#router" class="headerlink" title="router"></a>router</h2>
+        
+          <a class="article-more-a" href="/2017/07/11/Vue路由/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/11/Vue路由/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Vue组件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/11/Vue组件/">Vue组件</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/11/Vue组件/" class="archive-article-date">
+  	<time datetime="2017-07-11T10:32:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="全局组件"><a href="#全局组件" class="headerlink" title="全局组件"></a>全局组件</h2><ul>
+<li>组件：自定义标签</li>
+<li>全局组件：在任何Vue实例的视图中都可以使用</li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/07/11/Vue组件/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/11/Vue组件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Vue简单教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -578,192 +781,9 @@
 
 
   
-    <article id="post-H5交互简历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/14/H5交互简历/">H5交互简历</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/14/H5交互简历/" class="archive-article-date">
-  	<time datetime="2017-06-14T11:36:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>H5交互简历由加载部分、接听电话部分、聊天信息部分、魔方信息及信息滑动区域组成<br>
-        
-          <a class="article-more-a" href="/2017/06/14/H5交互简历/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动端H5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/14/H5交互简历/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-酒店首页实例-基于mui框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/11/酒店首页实例-基于mui框架/">酒店首页实例-基于mui框架</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/11/酒店首页实例-基于mui框架/" class="archive-article-date">
-  	<time datetime="2017-06-11T12:28:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>酒店首页的整体代码<br>
-        
-          <a class="article-more-a" href="/2017/06/11/酒店首页实例-基于mui框架/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mui框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/11/酒店首页实例-基于mui框架/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-移动端配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/11/移动端配置/">移动端配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/11/移动端配置/" class="archive-article-date">
-  	<time datetime="2017-06-11T12:08:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="移动端配置"><a href="#移动端配置" class="headerlink" title="移动端配置"></a>移动端配置</h2><h3 id="准备工作1："><a href="#准备工作1：" class="headerlink" title="准备工作1："></a>准备工作1：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span></div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/06/11/移动端配置/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CSS3教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/11/移动端配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
