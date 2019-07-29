@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://qiminghaonan.com/2019/07/29/asyncawait/</loc>
+    <lastmod>2019-07-29</lastmod>
+  </url>  <url>
     <loc>http://qiminghaonan.com/2019/07/29/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2019-07-29</lastmod>
   </url>  <url>
@@ -26,9 +29,6 @@
     <lastmod>2019-07-29</lastmod>
   </url>  <url>
     <loc>http://qiminghaonan.com/2019/07/29/generator%E7%94%9F%E6%88%90%E5%99%A8/</loc>
-    <lastmod>2019-07-29</lastmod>
-  </url>  <url>
-    <loc>http://qiminghaonan.com/2019/07/29/asyncawait/</loc>
     <lastmod>2019-07-29</lastmod>
   </url>  <url>
     <loc>http://qiminghaonan.com/2017/05/10/JS%E5%A1%AB%E7%A9%BA%E9%A2%986%E9%81%93/</loc>
