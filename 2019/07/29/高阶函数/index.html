@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://qiminghaonan.com/2019/07/29/高阶函数/index.html">
 <meta property="og:site_name" content="um-brella的博客">
 <meta property="og:description" content="把函数作为参数或者返回值的一类函数 AOP 面向切片编程 装饰模式 主要作用是把一些跟核心业务逻辑模块无关的功能抽离出来，其实就是给原函数增加一层，不用管原函数内部实现   before函数">
-<meta property="og:updated_time" content="2019-07-29T07:05:37.731Z">
+<meta property="og:updated_time" content="2019-07-29T07:10:12.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高阶函数">
 <meta name="twitter:description" content="把函数作为参数或者返回值的一类函数 AOP 面向切片编程 装饰模式 主要作用是把一些跟核心业务逻辑模块无关的功能抽离出来，其实就是给原函数增加一层，不用管原函数内部实现   before函数">
@@ -172,7 +172,8 @@
 <li>主要作用是把一些跟核心业务逻辑模块无关的功能抽离出来，其实就是给原函数增加一层，不用管原函数内部实现</li>
 </ul>
 </li>
-<li>before函数<a id="more"></a>
+<li><p>before函数</p>
+<a id="more"></a>
 </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> say = <span class="function">(<span class="params">who</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(who + <span class="string">'hello'</span>)</div><div class="line">&#125;</div><div class="line"><span class="built_in">Function</span>.prototype.before = <span class="function"><span class="keyword">function</span>(<span class="params">beforFunc</span>) </span>&#123;</div><div class="line">    <span class="comment">// this 箭头函数没有this，也没有arguments</span></div><div class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(args, <span class="keyword">this</span>)</div><div class="line">        <span class="keyword">this</span>(...args)</div><div class="line">        beforFunc()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// beforeSay是一个包装后的函数</span></div><div class="line"><span class="keyword">const</span> beforeSay = say.before(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'begin'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">beforeSay(<span class="string">'I'</span>)</div></pre></td></tr></table></figure>
@@ -257,6 +258,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/07/29/react事务/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          react事务
+        
+      </div>
+    </a>
   
   
     <a href="/2017/07/11/webpack/" id="article-nav-older" class="article-nav-link-wrap">
@@ -4715,6 +4725,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
               </li>
              
@@ -4731,11 +4745,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">CSS3教程</a>
+                <a href="javascript:void(0)" class="js-tag color5">promise学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+                <a href="javascript:void(0)" class="js-tag color2">CSS3教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -4744,10 +4758,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mui框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">promise学习</a>
               </li>
             
             <div class="clearfix"></div>
