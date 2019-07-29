@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://qiminghaonan.com/assets/practiceImg/4.png">
 <meta property="og:image" content="http://qiminghaonan.com/assets/practiceImg/5.png">
 <meta property="og:image" content="http://qiminghaonan.com/assets/practiceImg/6.png">
-<meta property="og:updated_time" content="2017-07-02T11:39:09.000Z">
+<meta property="og:updated_time" content="2019-07-29T07:59:12.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS填空题6道">
 <meta name="twitter:description" content="关于预解释、作用域、原型链小填空第一题题目： 12345678910//求在控制台输出的结果    function f()&amp;#123;console.log(g)&amp;#125;;    function g()&amp;#123;console.log(f)&amp;#125;;    console.log(f());    if(typeof f ==&quot;function&quot;)&amp;#123;        var">
@@ -176,7 +176,9 @@
         <h2 id="关于预解释、作用域、原型链小填空"><a href="#关于预解释、作用域、原型链小填空" class="headerlink" title="关于预解释、作用域、原型链小填空"></a>关于预解释、作用域、原型链小填空</h2><h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p><strong><font color="lightcoral" size="3">题目：</font></strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//求在控制台输出的结果</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(g)&#125;;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(f)&#125;;</div><div class="line">    <span class="built_in">console</span>.log(f());</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> f ==<span class="string">"function"</span>)&#123;</div><div class="line">        <span class="keyword">var</span> f=(<span class="function"><span class="keyword">function</span>(<span class="params">f</span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> f</div><div class="line">        &#125;)(g)</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(f());</div></pre></td></tr></table></figure>
 <p><strong><font color="green" size="3">答案解析：</font></strong><br><img src="http://qiminghaonan.com/assets/practiceImg/1.png" alt="这里是答案解析" title="答案解析"></p>
-<h2 id=""><a href="#" class="headerlink" title="    "></a><a id="more"></a>    </h2><h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p><strong><font color="lightcoral" size="3">题目：</font></strong></p>
+<a id="more"></a>    
+<hr>
+<h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p><strong><font color="lightcoral" size="3">题目：</font></strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//求在控制台输出的结果</span></div><div class="line">    <span class="keyword">var</span> a=b=<span class="number">2</span>;</div><div class="line">    <span class="keyword">var</span> obj=&#123;</div><div class="line">        <span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">        <span class="attr">b</span>:<span class="string">"1"</span></div><div class="line">    &#125;;</div><div class="line">    obj=(<span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.a=obj.a;</div><div class="line">        <span class="keyword">this</span>.b=obj.b++;</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">ff</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">this</span>.a++;</div><div class="line">            <span class="keyword">this</span>.b++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>&#123;</div><div class="line">            <span class="attr">a</span>:obj.a,</div><div class="line">            <span class="attr">b</span>:obj.b,</div><div class="line">            <span class="attr">ff</span>:ff</div><div class="line">        &#125;</div><div class="line">    &#125;)(obj);</div><div class="line">    <span class="keyword">var</span> ff=obj.ff;</div><div class="line">    ff();</div><div class="line">    obj.ff();</div><div class="line">    <span class="built_in">console</span>.log(a,b,obj.a,obj.b)</div></pre></td></tr></table></figure>
 <p><strong><font color="green" size="3">答案解析：</font></strong><br><img src="http://qiminghaonan.com/assets/practiceImg/2.png" alt="这里是答案解析" title="答案解析"></p>
 <hr>
@@ -4744,11 +4746,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
+                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
               </li>
              
               <li class="article-tag-list-item">

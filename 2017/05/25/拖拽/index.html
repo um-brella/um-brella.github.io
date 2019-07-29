@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://qiminghaonan.com/2017/05/25/拖拽/index.html">
 <meta property="og:site_name" content="um-brella的博客">
 <meta property="og:description" content="H5中的拖拽 设置元素的可拖放性 draggable=”true” 拖拽谁，给谁绑定事件 ondragstart=function(){} 放到哪里？ondragover这个事件规定了在何处放置被拖动的属性 【注意：】默认无法将元素放到其他元素中，那么如果需要放置，就得阻止事件的默认行为 preventDefault   进行放置 ondrop 当被放置的数据脱手的时候 注意：ondrop事件中浏">
-<meta property="og:updated_time" content="2017-07-02T11:32:36.000Z">
+<meta property="og:updated_time" content="2019-07-29T07:57:43.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拖拽">
 <meta name="twitter:description" content="H5中的拖拽 设置元素的可拖放性 draggable=”true” 拖拽谁，给谁绑定事件 ondragstart=function(){} 放到哪里？ondragover这个事件规定了在何处放置被拖动的属性 【注意：】默认无法将元素放到其他元素中，那么如果需要放置，就得阻止事件的默认行为 preventDefault   进行放置 ondrop 当被放置的数据脱手的时候 注意：ondrop事件中浏">
@@ -174,11 +174,11 @@
 </ul>
 </li>
 <li>进行放置 ondrop 当被放置的数据脱手的时候<ul>
-<li>注意：ondrop事件中浏览器默认是以打开链接的方式打开，所以要阻止他的默认行为<a id="more"></a>
-</li>
+<li>注意：ondrop事件中浏览器默认是以打开链接的方式打开，所以要阻止他的默认行为</li>
 </ul>
 </li>
 </ol>
+<a id="more"></a>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这里是html结构--&gt;</span></div><div class="line"><span class="comment">&lt;!--设置一个div，用来放置拖拽过来的图片--&gt;</span></div><div class="line"><span class="comment">&lt;!--设置一张图片，进行拖拽--&gt;</span></div><div class="line"><span class="comment">&lt;!--在这里事件函数只能传event--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ondragover</span>=<span class="string">"put(event)"</span> <span class="attr">ondrop</span>=<span class="string">"drop(event)"</span> <span class="attr">id</span>=<span class="string">"box1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">"true"</span> <span class="attr">src</span>=<span class="string">"img/1.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">ondragstart</span>=<span class="string">"drag(event)"</span> <span class="attr">id</span>=<span class="string">"img1"</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drag</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="comment">//ondragstart</span></div><div class="line">    <span class="comment">//设置被拖动元素的数据</span></div><div class="line">    <span class="comment">//e事件对象</span></div><div class="line">    <span class="comment">//e.dataTransfer:事件对象的可拖动数据</span></div><div class="line">    <span class="comment">//e.dataTransfer.setData(参数1，参数2) 设置事件对象的可拖动数据</span></div><div class="line">    <span class="comment">//参数1：设置被拖动元素的数据类型 "Image"</span></div><div class="line">    <span class="comment">//参数2：设置被拖动元素的id</span></div><div class="line">    e.dataTransfer.setData(<span class="string">"Image"</span>,e.target.id);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">put</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    e.preventDefault();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drop</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="comment">//注意：ondrop事件中浏览器默认是以打开链接的方式打开</span></div><div class="line">    <span class="comment">//所以要阻止他的默认行为</span></div><div class="line">    e.preventDefault();</div><div class="line"></div><div class="line">    <span class="comment">//获取放置进来的数据 获取出来的是他的ID</span></div><div class="line">    <span class="comment">//记住：setData中设置的什么类型这里就怎么写</span></div><div class="line">    <span class="keyword">var</span> id=e.dataTransfer.getData(<span class="string">"Image"</span>);</div><div class="line">    <span class="keyword">var</span> data=<span class="built_in">document</span>.getElementById(id);</div><div class="line">    e.target.appendChild(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
@@ -4763,11 +4763,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
+                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
               </li>
              
               <li class="article-tag-list-item">

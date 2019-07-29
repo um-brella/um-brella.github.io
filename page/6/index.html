@@ -174,7 +174,12 @@
 </li>
 <li>把原生对象变成JQ对象<ul>
 <li>$(原生对象) </li>
-<li>例如：<code>var box=document.getElementById(&quot;box&quot;)</code> <code>$(box)</code>
+<li>例如：<code>var box=document.getElementById(&quot;box&quot;)</code> <code>$(box)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
         
           <a class="article-more-a" href="/2017/05/18/JQ简单学习/#more">more >></a>
         
@@ -431,7 +436,9 @@
         <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><blockquote>
 <ol>
 <li>针对不同导航点击跳转不同楼层页面</li>
-<li>滑动页面时楼层对应导航页面样式发生变化
+<li>滑动页面时楼层对应导航页面样式发生变化</li>
+</ol>
+</blockquote>
         
           <a class="article-more-a" href="/2017/05/13/楼层导航/#more">more >></a>
         
@@ -703,7 +710,6 @@
         <h2 id="关于预解释、作用域、原型链小填空"><a href="#关于预解释、作用域、原型链小填空" class="headerlink" title="关于预解释、作用域、原型链小填空"></a>关于预解释、作用域、原型链小填空</h2><h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p><strong><font color="lightcoral" size="3">题目：</font></strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//求在控制台输出的结果</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(g)&#125;;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(f)&#125;;</div><div class="line">    <span class="built_in">console</span>.log(f());</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> f ==<span class="string">"function"</span>)&#123;</div><div class="line">        <span class="keyword">var</span> f=(<span class="function"><span class="keyword">function</span>(<span class="params">f</span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> f</div><div class="line">        &#125;)(g)</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(f());</div></pre></td></tr></table></figure>
 <p><strong><font color="green" size="3">答案解析：</font></strong><br><img src="http://qiminghaonan.com/assets/practiceImg/1.png" alt="这里是答案解析" title="答案解析"></p>
-<h2 id=""><a href="#" class="headerlink" title="    "></a>
         
           <a class="article-more-a" href="/2017/05/10/JS填空题6道/#more">more >></a>
         
@@ -5272,11 +5278,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS教程</a>
+                <a href="javascript:void(0)" class="js-tag color1">移动端H5</a>
               </li>
              
               <li class="article-tag-list-item">
