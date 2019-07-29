@@ -15,10 +15,12 @@
 <meta property="og:url" content="http://qiminghaonan.com/2019/07/29/异步并发处理/index.html">
 <meta property="og:site_name" content="um-brella的博客">
 <meta property="og:description" content="异步并发处理">
-<meta property="og:updated_time" content="2019-07-29T07:33:53.730Z">
+<meta property="og:image" content="http://qiminghaonan.com/assets/img/Wechat.jpeg">
+<meta property="og:updated_time" content="2019-07-29T08:44:26.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="异步并发，after函数">
 <meta name="twitter:description" content="异步并发处理">
+<meta name="twitter:image" content="http://qiminghaonan.com/assets/img/Wechat.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -172,6 +174,8 @@
 </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lodash after 在执行多少次之后在执行</span></div><div class="line"><span class="comment">// 做异步的并发处理</span></div><div class="line"><span class="keyword">const</span> after = <span class="function">(<span class="params">times, callback</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">if</span> (--times === <span class="number">0</span>) &#123;</div><div class="line">            callback();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> fn = after(<span class="number">3</span>, () =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'执行三次后才执行'</span>)</div><div class="line">&#125;);</div><div class="line">fn();</div><div class="line">fn();</div><div class="line">fn();</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="感谢支持："><a href="#感谢支持：" class="headerlink" title="感谢支持："></a><strong><font color="lightcoral" size="5">感谢支持：</font></strong></h2><div align="center"><br>   <img src="http://qiminghaonan.com/assets/img/Wechat.jpeg" width="25%" alt="赞赏码" align="center"><br></div>
       
 
       

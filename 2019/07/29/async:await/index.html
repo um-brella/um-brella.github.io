@@ -15,10 +15,12 @@
 <meta property="og:url" content="http://qiminghaonan.com/2019/07/29/async:await/index.html">
 <meta property="og:site_name" content="um-brella的博客">
 <meta property="og:description" content="async/await写法 本质就是generator函数+co库">
-<meta property="og:updated_time" content="2019-07-29T07:49:51.379Z">
+<meta property="og:image" content="http://qiminghaonan.com/assets/img/Wechat.jpeg">
+<meta property="og:updated_time" content="2019-07-29T08:43:12.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="async&#x2F;await">
 <meta name="twitter:description" content="async/await写法 本质就是generator函数+co库">
+<meta name="twitter:image" content="http://qiminghaonan.com/assets/img/Wechat.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -173,6 +175,8 @@
 </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// async + await koa + async + await</span></div><div class="line"><span class="comment">// react</span></div><div class="line"><span class="comment">// 语法糖</span></div><div class="line"><span class="keyword">let</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>).promises</div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">let</span> content = <span class="keyword">await</span> fs.readFile(<span class="string">'./name.txt'</span>, <span class="string">'utf8'</span>);</div><div class="line">        <span class="keyword">let</span> age = <span class="keyword">await</span> fs.readFile(content, <span class="string">'utf8'</span>);</div><div class="line">        <span class="comment">// let r = await 100</span></div><div class="line">        <span class="keyword">return</span> age;</div><div class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">        <span class="built_in">console</span>.log(err);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// async函数返回的是一个promise</span></div><div class="line">read().then(<span class="function"><span class="params">r</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(r);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// generator-runtime搜索 generator简单实现</span></div><div class="line"><span class="comment">// async + await 就是 generator + co 库</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="感谢支持："><a href="#感谢支持：" class="headerlink" title="感谢支持："></a><strong><font color="lightcoral" size="5">感谢支持：</font></strong></h2><div align="center"><br>   <img src="http://qiminghaonan.com/assets/img/Wechat.jpeg" width="25%" alt="赞赏码" align="center"><br></div>
       
 
       

@@ -15,10 +15,12 @@
 <meta property="og:url" content="http://qiminghaonan.com/2019/07/29/判断数据类型/index.html">
 <meta property="og:site_name" content="um-brella的博客">
 <meta property="og:description" content="四种方法 typeof typeof undefined =&amp;gt; ‘undefined’ typeof 1213 =&amp;gt; ’number’ typeof &amp;#39;dasd&amp;#39; =&amp;gt; ’string’ typeof false =&amp;gt; ‘boolean’ typeof Symbol() =&amp;gt; ’symbol’ typeof Function =&amp;gt; ‘functi">
-<meta property="og:updated_time" content="2019-07-29T07:32:35.215Z">
+<meta property="og:image" content="http://qiminghaonan.com/assets/img/Wechat.jpeg">
+<meta property="og:updated_time" content="2019-07-29T08:45:10.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="判断数据类型">
 <meta name="twitter:description" content="四种方法 typeof typeof undefined =&amp;gt; ‘undefined’ typeof 1213 =&amp;gt; ’number’ typeof &amp;#39;dasd&amp;#39; =&amp;gt; ’string’ typeof false =&amp;gt; ‘boolean’ typeof Symbol() =&amp;gt; ’symbol’ typeof Function =&amp;gt; ‘functi">
+<meta name="twitter:image" content="http://qiminghaonan.com/assets/img/Wechat.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="um-brella的博客" type="application/atom+xml">
   
@@ -232,6 +234,8 @@
 </li>
 </ul>
 <h2 id="柯里化实现数据类型判断"><a href="#柯里化实现数据类型判断" class="headerlink" title="柯里化实现数据类型判断"></a>柯里化实现数据类型判断</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> isType = <span class="function">(<span class="params">type</span>) =&gt;</span> &#123; <span class="comment">// 变量</span></div><div class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">content</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(content) === <span class="string">"[object "</span> + type + <span class="string">"]"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// isString isArray isBoolean</span></div><div class="line"><span class="keyword">const</span> types = [<span class="string">'String'</span>, <span class="string">'Boolean'</span>, <span class="string">'Number'</span>, <span class="string">'Null'</span>, <span class="string">'Undefined'</span>];</div><div class="line"><span class="keyword">const</span> utils = &#123;&#125;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; types.length; i++) &#123;</div><div class="line">    <span class="keyword">const</span> type = types[i]</div><div class="line">    utils[<span class="string">'is'</span> + type] = isType(type);</div><div class="line">    <span class="comment">// utils.isString = function 预制参数 和 bind一样</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// const flag = utils.isString('hello');</span></div><div class="line"><span class="keyword">const</span> flag = utils.isNumber(<span class="number">123</span>);</div><div class="line"><span class="built_in">console</span>.log(flag);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="感谢支持："><a href="#感谢支持：" class="headerlink" title="感谢支持："></a><strong><font color="lightcoral" size="5">感谢支持：</font></strong></h2><div align="center"><br>   <img src="http://qiminghaonan.com/assets/img/Wechat.jpeg" width="25%" alt="赞赏码" align="center"><br></div>
       
 
       
